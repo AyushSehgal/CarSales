@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Car Finances</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="main.js">
+        </script>
+    </head>
+    <body>
+            <form class="form-horizontal" id="carform" oninput="getCarPriceTotal()">
+                    <fieldset>
+                    
+                    <!-- Form Name -->
+                    <legend>Car Finances</legend>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="originalPrice">Original Price of Vehicle</label>  
+                      <div class="col-md-4">
+                      <input id="originalPrice" name="originalPrice" type="text" placeholder="" class="form-control input-md">
+                        
+                      </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="addOn">Add-On Price</label>  
+                      <div class="col-md-2">
+                      <input id="addOn" name="addOn" type="text" placeholder="" class="form-control input-md">
+                        
+                      </div>
+                    </div>
+                    
+                    <!-- Text output-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="totalPrice">Total Price</label>  
+                      <div class="col-md-4">
+                      <output id="totalPrice" name="totalPrice" for="addOn originalPrice">Output Goes Here</output>
+                        
+                      </div>
+                    </div>
+                    
+                    <!-- Multiple Radios -->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="downPayment">Down Payment</label>
+                      <div class="col-md-4">
+                      <div class="radio">
+                        <label for="downPayment-0">
+                          <input type="radio" name="downPayment" id="downPayment-0" value="15" checked="checked">
+                          15%
+                        </label>
+                        </div>
+                      <div class="radio">
+                        <label for="downPayment-1">
+                          <input type="radio" name="downPayment" id="downPayment-1" value="20">
+                          20%
+                        </label>
+                        </div>
+                      <div class="radio">
+                        <label for="downPayment-2">
+                          <input type="radio" name="downPayment" id="downPayment-2" value="25">
+                          25%
+                        </label>
+                        </div>
+                      <div class="radio">
+                        <label for="downPayment-3">
+                          <input type="radio" name="downPayment" id="downPayment-3" value="other">
+                          Other:
+                        </label>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="finVal">Finance Value</label>  
+                      <div class="col-md-4">
+                      <input id="finVal" name="finVal" type="text" placeholder="" class="form-control input-md">
+                        
+                      </div>
+                    </div>
+                    
+                    </fieldset>
+                    </form>
+                    
+
+    </body>
+    
+</html>
