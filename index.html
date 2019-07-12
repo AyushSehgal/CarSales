@@ -11,7 +11,7 @@
         </script>
     </head>
     <body>
-            <form class="form-horizontal" id="carform" oninput="getCarPriceTotal(); getDownPayment(); calcFinVal()">
+            <form class="form-horizontal" id="carform" oninput="getCarPriceTotal(); calcFinVal()">
                     <fieldset>
                     
                     <!-- Form Name -->
@@ -50,25 +50,25 @@
                       <div class="col-md-4">
                       <div class="radio">
                         <label for="downPayment-0">
-                          <input type="radio" name="downPayment" id="downPayment-0" value="15" checked="checked">
+                          <input type="radio" name="downPayment" id="downPayment-0" value="15" checked="checked" onclick="calcFinVal()">
                           15%
                         </label>
                         </div>
                       <div class="radio">
                         <label for="downPayment-1">
-                          <input type="radio" name="downPayment" id="downPayment-1" value="20">
+                          <input type="radio" name="downPayment" id="downPayment-1" value="20" onclick="calcFinVal()">
                           20%
                         </label>
                         </div>
                       <div class="radio">
                         <label for="downPayment-2">
-                          <input type="radio" name="downPayment" id="downPayment-2" value="25">
+                          <input type="radio" name="downPayment" id="downPayment-2" value="25" onclick="calcFinVal()">
                           25%
                         </label>
                         </div>
                       <div class="radio">
                         <label for="downPayment-3">
-                          <input type="radio" name="downPayment" id="downPayment-3" value="other">
+                          <input type="radio" name="downPayment" id="downPayment-3" value="30" onclick="calcFinVal()">
                           Other:
                         </label>
                         </div>
@@ -79,7 +79,7 @@
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="finVal">Finance Value</label>  
                       <div class="col-md-4">
-                      <output id="finVal" name="finVal" for="downPayment">Output Goes Here</output>
+                      <output id="finVal" name="finVal" for="totalPrice downPayment">Output Goes Here</output>
                       </div>
                     </div>
                     

@@ -10,28 +10,18 @@ function getCarPriceTotal() {
     return outputPrice.value;
 }
 
-function getDownPayment() {
-    var downPayment = 0;
+function calcFinVal() {
     var form = document.getElementById["carform"];
+    var downPaymentVal = 0;
     var downPaymentList = form.elements["downPayment"];
-
+    
     for (let i = 0; i < downPaymentList.length; i++) {
         if (downPaymentList[i].checked) {
-            downPayment = downPaymentList[i].value;
+            downPaymentVal = downPaymentList[i].value;
             break;
         }
     }
-    return downPayment / 100;
-}
-
-function calcFinVal() {
-    var form = document.getElementById["carform"];
-    var carPrice = getCarPriceTotal();
-    var down = getDownPayment();
-    var finVal = carPrice * down;
-
-    var outputFinVal = form.elements["finVal"];
-    outputFinVal.value = finVal;
     
-    return finVal;
+    var outputFinVal = form.elements["finVal"];
+    outputFinVal.value = getCarPriceTotal() * (downPaymentVal / 100);
 }
