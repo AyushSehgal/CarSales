@@ -11,7 +11,7 @@
         </script>
     </head>
     <body>
-            <form class="form-horizontal" id="carform" oninput="getCarPriceTotal()">
+            <form class="form-horizontal" id="carform" oninput="getCarPriceTotal(); getDownPayment(); calcFinVal()">
                     <fieldset>
                     
                     <!-- Form Name -->
@@ -75,12 +75,11 @@
                       </div>
                     </div>
                     
-                    <!-- Text input-->
+                    <!-- Text output-->
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="finVal">Finance Value</label>  
                       <div class="col-md-4">
-                      <input id="finVal" name="finVal" type="text" placeholder="" class="form-control input-md">
-                        
+                      <output id="finVal" name="finVal" for="downPayment">Output Goes Here</output>
                       </div>
                     </div>
                     
