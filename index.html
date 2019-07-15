@@ -6,63 +6,58 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Car Finances</title>
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <script src="main.js">
         </script>
+        <style src="stylesheet.css"></style>
     </head>
     <body>
-            <form class="form-horizontal" id="carform">
+           <h1>Car Finances</h1>
+           <!-- Div 1 - Financial Value -->
+           <div class="container">
+            <form class="form-horizontal mx-auto" id="carform">
                     <fieldset>
                     
                     <!-- Form Name -->
-                    <legend>Car Finances</legend>
+                    <legend>Calculate Financial Value</legend>
                     
                     <!-- Text input-->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="originalPrice">Original Price of Vehicle</label>  
-                      <div class="col-md-2">
-                      <input id="originalPrice" oninput="getCarPriceTotal()" name="originalPrice" type="text" placeholder="" class="form-control input-md">
-                        
-                      </div>
+                      <label for="originalPrice">Original Price of Vehicle</label>  
+                      <input id="originalPrice" oninput="getCarPriceTotal()" name="originalPrice" type="text" placeholder="" class="form-control input-md">  
                     </div>
                     
                     <!-- Text input-->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="addOn">Add-On Price</label>  
-                      <div class="col-md-2">
+                      <label for="addOn">Add-On Price</label>  
                       <input id="addOn" name="addOn" oninput="getCarPriceTotal()" type="text" placeholder="" class="form-control input-md">
-                        
-                      </div>
                     </div>
                     
                     <!-- Text output-->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="totalPrice">Total Price (THB)</label>  
-                      <div class="col-md-4">
+                      <label for="totalPrice"><strong>Total Price (THB):</strong></label>  
                       <output id="totalPrice" name="totalPrice" for="addOn originalPrice"></output>
-                        
-                      </div>
                     </div>
                     
                     <!-- Multiple Radios -->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="downPayment">Down Payment</label>
-                      <div class="col-md-4">
+                      <label for="downPayment">Down Payment</label>   
                       <div class=radio>
-
-                      
                         <label for="downPayment-0">
                           <input type="radio" name="downPayment" id="downPayment-0" value="15" onclick="calcFinVal()">
                           15%
                         </label>
-                        
+
                         <br>
+
                         <label for="downPayment-1">
                           <input type="radio" name="downPayment" id="downPayment-1" value="20" onclick="calcFinVal()">
                         20%
                         </label>
                         
                         <br>
+
                         <label for="downPayment-2">
                           <input type="radio" name="downPayment" id="downPayment-2" value="25" onclick="calcFinVal()">
                         25%
@@ -74,22 +69,28 @@
                           Other:
                         </label>
                         <input id="otherRadio" oninput="calcFinVal()" name="otherRadio" type="text" placeholder="%">
-                      </div>
-                      </div>
+                      </div> 
                     </div>
                   
-                
                     <!-- Text output-->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="finVal">Finance Value (THB)</label>  
-                      <div class="col-md-4">
+                      <label for="finVal"><strong>Finance Value (THB): </strong></label>                        
                       <output id="finVal" name="finVal" for="originalPrice addOn downPayment"></output>
-                      </div>
                     </div>
-                    <hr width=80%>
+                    <hr width=100%>
                     
                     </fieldset>
                     </form>
+                  </div>
+          <!-- Div 2 - Installment Value  -->
+          <div class="container">
+              <h2>Basic Card</h2>
+              <div class="card">
+                <div class="card-body">Basic card</div>
+              </div>
+          </div>
+
+
                     
 
     </body>
