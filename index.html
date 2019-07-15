@@ -79,14 +79,40 @@
                     </div>
                     <hr width=100%>
                     
-                    </fieldset>
+                    </fieldset> 
                     </form>
                   </div>
           <!-- Div 2 - Installment Value  -->
+          
           <div class="container">
-              <h2>Basic Card</h2>
+              <legend>Calculate Installment Value</legend>
               <div class="card">
-                <div class="card-body">Basic card</div>
+                  <div class="card-header">
+                    <button type="button" class="btn btn-primary" onclick="addInterest()">Add Calculation</button>   
+                  </div>
+              </div>
+             
+              <div class="card" id="cards">
+                <div class="card-body">
+                  <form class="form-horizontal" id="interestCards">
+                  <div class="form-group">
+                    <label for="years">Installment Years</label>  
+                    <input id="years" name="years" oninput="calcInstallments()" type="text" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <label for="interest">Interest (%)</label>  
+                      <input id="interest" name="interest" oninput="calcInstallments()" type="text" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <label for="installment"><strong>Installment Value Per Year (THB): </strong></label>                        
+                      <output id="installment" name="installment" for="years interest"></output>
+                  </div>
+                  </form>
+                </div>
+                <div class="card-footer">
+                  <button type="button" class="btn btn-danger" id="deleteButton" onclick="deleteInterest(this)">Delete</button>   
+                </div>
+               
               </div>
           </div>
 
