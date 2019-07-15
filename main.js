@@ -15,9 +15,15 @@ function getDownPayment() {
     var downPaymentVal = 0;
     var downPaymentList = theForm.elements["downPayment"]; 
 
+
     for (let i = 0; i < downPaymentList.length; i++) {
         if (downPaymentList[i].checked) {
             downPaymentVal = downPaymentList[i].value;
+            if (downPaymentVal == "other") {
+                downPaymentVal = parseInt(theForm.elements["otherRadio"].value);
+                console.log(downPaymentVal);
+                break;
+            }
             break;
         }
 
@@ -33,6 +39,6 @@ function calcFinVal() {
     
     var finVal = total * (down / 100);
 
-    outputFinVal.value = finVal;
+    outputFinVal.value = finVal.toFixed(2);
     
 }

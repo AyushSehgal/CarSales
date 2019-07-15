@@ -20,7 +20,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="originalPrice">Original Price of Vehicle</label>  
-                      <div class="col-md-4">
+                      <div class="col-md-2">
                       <input id="originalPrice" oninput="getCarPriceTotal()" name="originalPrice" type="text" placeholder="" class="form-control input-md">
                         
                       </div>
@@ -56,23 +56,24 @@
                           15%
                         </label>
                         
-                      
+                        <br>
                         <label for="downPayment-1">
                           <input type="radio" name="downPayment" id="downPayment-1" value="20" onclick="calcFinVal()">
-                          20%
+                        20%
                         </label>
                         
-                      
+                        <br>
                         <label for="downPayment-2">
                           <input type="radio" name="downPayment" id="downPayment-2" value="25" onclick="calcFinVal()">
-                          25%
+                        25%
                         </label>
                         
-                      
+                        <br>
                         <label for="downPayment-3">
-                          <input type="radio" name="downPayment" id="downPayment-3" value="30" onclick="calcFinVal()">
+                          <input type="radio" name="downPayment" id="downPayment-3" value="other" onclick="calcFinVal()">
                           Other:
                         </label>
+                        <input id="otherRadio" oninput="calcFinVal()" name="otherRadio" type="text" placeholder="%">
                       </div>
                       </div>
                     </div>
@@ -85,6 +86,7 @@
                       <output id="finVal" name="finVal" for="originalPrice addOn downPayment"></output>
                       </div>
                     </div>
+                    <hr width=80%>
                     
                     </fieldset>
                     </form>
