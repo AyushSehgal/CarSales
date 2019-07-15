@@ -1,27 +1,38 @@
-
 function getCarPriceTotal() {
     var form = document.getElementById("carform"); 
     var outputPrice = form.elements["totalPrice"];
     var originalPrice = parseInt(form.elements["originalPrice"].value);
     var addOn = parseInt(form.elements["addOn"].value);
-    //var totalPrice = getOriginalPrice() + getAddOnPrice();
 
-    outputPrice.value = originalPrice + addOn;
-    return outputPrice.value;
+    var totalPrice = originalPrice + addOn;
+    
+    outputPrice.value = totalPrice;
+    return totalPrice;
 }
 
-function calcFinVal() {
-    var form = document.getElementById["carform"];
+function getDownPayment() {
+    var theForm = document.getElementById("carform");
     var downPaymentVal = 0;
-    var downPaymentList = form.elements["downPayment"];
-    
+    var downPaymentList = theForm.elements["downPayment"]; 
+
     for (let i = 0; i < downPaymentList.length; i++) {
         if (downPaymentList[i].checked) {
             downPaymentVal = downPaymentList[i].value;
             break;
         }
+
     }
+    return downPaymentVal;
+}
+
+function calcFinVal() {
+    var theForm1 = document.getElementById("carform");
+    var outputFinVal = theForm1.elements["finVal"];
+    var total = getCarPriceTotal();
+    var down = getDownPayment();
     
-    var outputFinVal = form.elements["finVal"];
-    outputFinVal.value = getCarPriceTotal() * (downPaymentVal / 100);
+    var finVal = total * (down / 100);
+
+    outputFinVal.value = finVal;
+    
 }
