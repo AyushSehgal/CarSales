@@ -42,37 +42,53 @@ function calcFinVal() {
     return finVal; 
 }
 
-function calcInstallments() {
-    var theForm2 = document.getElementById("interestCards");
-    var outputInstallment = theForm2.elements["installment"];
-    var years = parseInt(theForm2.elements["years"].value);
-    var interest = parseInt(theForm2.elements["interest"].value);
+function calcInstallments(digit) {
+    var theForm2 = document.getElementById("interestCards" + digit);
+    var outputInstallment = theForm2.elements["installment" + digit];
+    var years = parseInt(theForm2.elements["years" + digit].value);
+    var interest = parseInt(theForm2.elements["interest" + digit].value);
     var financialValue = calcFinVal();
 
     var installmentValue = ((financialValue * (interest / 100) * years) + financialValue) / (years * 12);
 
-    outputInstallment.value = installmentValue;
+    outputInstallment.value = installmentValue.toFixed(2);
     return installmentValue;
 }
+
 var j = 0;
 function addInterest() {
     j++;
     add(j);
 } 
 function add(identification) {
-    console.log("Entered AddInterest");
     var installmentCard = document.getElementById("card0");
     var duplicate = installmentCard.cloneNode(true);
     duplicate.id = "card" + identification;
-    var idString = '\'' + duplicate.id + '\'';   
+    var idString = '\'' + duplicate.id + '\'';  
+    
+    var formDuplicated = duplicate.childNodes[1].childNodes[1];
+    formDuplicated.id = "interestCards" + identification;
+
+    var yearsId = duplicate.childNodes[1].childNodes[1].childNodes[1].childNodes[3];
+    yearsId.id = "years" + identification;
+    yearsId.setAttribute('name', 'years' + identification);
+
+    var interestId = duplicate.childNodes[1].childNodes[1].childNodes[3].childNodes[3];
+    interestId.id = "interest" + identification;
+    interestId.setAttribute('name', 'interest' + identification);
+    
+    var outputField = duplicate.childNodes[1].childNodes[1].childNodes[5].childNodes[3];
+    outputField.id = "installment" + identification;
+    outputField.setAttribute('name', 'installment' + identification);
+    outputField.setAttribute('for', 'years' + identification + ' interest' + identification);
+    outputField.innerHTML = '';
     duplicate.innerHTML += '<div class=\"card-footer\"><button type=\"button\" class=\"btn btn-danger\" id=\"deleteButton\" onclick=\"deleteInterest('
         + idString + ')\">Delete</button></div>';
-    console.log(duplicate.innerHTML);
+
     installmentCard.parentNode.appendChild(duplicate);      
 }
 
 function deleteInterest(divId) {
-    console.log("Entered DeleteInterest");
     var card = document.getElementById(divId);
     card.parentNode.removeChild(card);
 }
