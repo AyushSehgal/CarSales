@@ -21,7 +21,6 @@ function getDownPayment() {
             downPaymentVal = downPaymentList[i].value;
             if (downPaymentVal == "other") {
                 downPaymentVal = parseInt(theForm.elements["otherRadio"].value);
-                console.log(downPaymentVal);
                 break;
             }
             break;
@@ -45,31 +44,35 @@ function calcFinVal() {
 
 function calcInstallments() {
     var theForm2 = document.getElementById("interestCards");
-    console.log(theForm2);
     var outputInstallment = theForm2.elements["installment"];
     var years = parseInt(theForm2.elements["years"].value);
     var interest = parseInt(theForm2.elements["interest"].value);
     var financialValue = calcFinVal();
-    console.log(years);
-    console.log(interest);
-    console.log(financialValue);
 
     var installmentValue = ((financialValue * (interest / 100) * years) + financialValue) / (years * 12);
-    console.log(installmentValue);
 
     outputInstallment.value = installmentValue;
     return installmentValue;
 }
-
+var j = 0;
 function addInterest() {
-   var installmentCard = document.getElementById("cards");
-   var duplicate = installmentCard.cloneNode(true);
-   duplicate.id = "interestCard2";
-   duplicate.onclick = addInterest;
-   installmentCard.parentNode.appendChild(duplicate);
+    j++;
+    add(j);
+} 
+function add(identification) {
+    var installmentCard = document.getElementById("card0");
+    var duplicate = installmentCard.cloneNode(true);
+    duplicate.id = "card" + identification;
+    var eyedee = '\'' + duplicate.id + '\'';
+    duplicate.onclick = addInterest;    
+    duplicate.innerHTML += '<div class=\"card-footer\"><button type=\"button\" class=\"btn btn-danger\" id=\"deleteButton\" onclick=\"deleteInterest('
+        + eyedee + ')\">Delete</button></div>';
+    console.log(duplicate.innerHTML);
+    installmentCard.parentNode.appendChild(duplicate);      
 }
 
-function deleteInterest() {
-    var card = document.getElementById("cards");
+function deleteInterest(divId) {
+    console.log("this is my div id: " + divId);
+    var card = document.getElementById(divId);
     card.parentNode.removeChild(card);
 }
