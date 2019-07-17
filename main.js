@@ -60,19 +60,19 @@ function addInterest() {
     add(j);
 } 
 function add(identification) {
+    console.log("Entered AddInterest");
     var installmentCard = document.getElementById("card0");
     var duplicate = installmentCard.cloneNode(true);
     duplicate.id = "card" + identification;
-    var eyedee = '\'' + duplicate.id + '\'';
-    duplicate.onclick = addInterest;    
+    var idString = '\'' + duplicate.id + '\'';   
     duplicate.innerHTML += '<div class=\"card-footer\"><button type=\"button\" class=\"btn btn-danger\" id=\"deleteButton\" onclick=\"deleteInterest('
-        + eyedee + ')\">Delete</button></div>';
+        + idString + ')\">Delete</button></div>';
     console.log(duplicate.innerHTML);
     installmentCard.parentNode.appendChild(duplicate);      
 }
 
 function deleteInterest(divId) {
-    console.log("this is my div id: " + divId);
+    console.log("Entered DeleteInterest");
     var card = document.getElementById(divId);
     card.parentNode.removeChild(card);
 }
