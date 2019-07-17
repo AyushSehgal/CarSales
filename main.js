@@ -92,3 +92,4 @@ function deleteInterest(divId) {
     var card = document.getElementById(divId);
     card.parentNode.removeChild(card);
 }
+
