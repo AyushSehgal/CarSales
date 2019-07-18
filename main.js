@@ -167,35 +167,42 @@ function selection() {
     k++;
     handleSelected(k);
 }
+let trackSelections = new Array();
 
 function handleSelected(k) {
     var menu = document.getElementById("AddOnOptions");
     var itemSelected = menu.options[menu.selectedIndex].text;
-       
-    var selectedItemDiv = document.createElement('div');
-    selectedItemDiv.setAttribute('class', 'form-group');
-    selectedItemDiv.setAttribute('id', "item" + k);
-    var stringId = '\'' + selectedItemDiv.id + '\''; 
-    selectedItemDiv.setAttribute('onclick', 'uncheckItem('+ stringId +')'); 
-        
-    var selectedItemInput = document.createElement('input');
-    selectedItemInput.checked = true;
-              
-    selectedItemInput.setAttribute('type', 'checkbox');
-    selectedItemInput.setAttribute('class', 'custom-control-input');
-    selectedItemDiv.appendChild(selectedItemInput);
-    var selectedItemLabel = document.createElement('label');
-    selectedItemLabel.setAttribute('class', 'custom-control-label');
-    selectedItemLabel.innerHTML = itemSelected;
-        
-    selectedItemDiv.appendChild(selectedItemLabel);
-    var selectedItems = document.getElementById('selectedItems');
-    selectedItems.appendChild(selectedItemDiv);
-    selectedItems.setAttribute('style', '');
     
+    if (!trackSelections.includes(itemSelected)) {
+        trackSelections.push(itemSelected);
+        
+        var selectedItemDiv = document.createElement('div');
+        selectedItemDiv.setAttribute('class', 'form-group');
+        selectedItemDiv.setAttribute('id', "item" + k);
+        var stringId = '\'' + selectedItemDiv.id + '\''; 
+        selectedItemDiv.setAttribute('onclick', 'uncheckItem('+ stringId +')'); 
+            
+        var selectedItemInput = document.createElement('input');
+        selectedItemInput.checked = true;
+                
+        selectedItemInput.setAttribute('type', 'checkbox');
+        selectedItemInput.setAttribute('class', 'custom-control-input');
+        selectedItemDiv.appendChild(selectedItemInput);
+        var selectedItemLabel = document.createElement('label');
+        selectedItemLabel.setAttribute('class', 'custom-control-label');
+        selectedItemLabel.innerHTML = itemSelected;
+            
+        selectedItemDiv.appendChild(selectedItemLabel);
+        var selectedItems = document.getElementById('selectedItems');
+        selectedItems.appendChild(selectedItemDiv);
+        selectedItems.setAttribute('style', '');
+    }
 }
 function uncheckItem(id) {
     var item = document.getElementById(id);
+    var inputValue = item.childNodes[1].innerHTML;
+    var index = trackSelections.indexOf(inputValue);
+    trackSelections.splice(index, 1);
     item.parentNode.removeChild(item);
 }
 
