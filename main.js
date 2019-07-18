@@ -164,7 +164,6 @@ function customAddOn() {
 }
 var k = 0;
 function selection() {
-    console.log("entered helper");
     k++;
     handleSelected(k);
 }
@@ -196,10 +195,7 @@ function handleSelected(k) {
     
 }
 function uncheckItem(id) {
-    console.log("-----uncheckItem()-----");
-    console.log("identification: " + id);
     var item = document.getElementById(id);
-    console.log(item.id);
     item.parentNode.removeChild(item);
 }
 
