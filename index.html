@@ -6,10 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Car Finances</title>
         <!-- Latest compiled and minified CSS -->
-        <!-- link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <script src="main.js">
-        </script>
+        <script src="main.js"></script>
         <style src="stylesheet.css"></style>
     </head>
     <body>
@@ -111,24 +109,38 @@
                 </div>    
               </div> 
               <hr width=100%>
+              
           </div>
 
           <!-- Div 3 - Add Ons -->
           <div class="container">
               <legend>Add-Ons</legend>
               <form class="form-horizontal" id="addOnsForm">
-                <select class="custom-select" multiple size="6">
+                <div class="form-group" id="custom">
+                  <h6>New Add-On</h6>
+                  <div class="row">
+                    <div class="col-4">
+                      <input id="newAddOnName" name="newAddOnName" type="text" placeholder="Name" class="form-control">
+                    </div>
+                    <div class="col-3">
+                      <input id="newAddOnCost" name="newAddOnCost" type="text" placeholder="Cost (THB)" class="form-control">
+                    </div>
+                    <div class="col-3">
+                      <input id="newAddOnPrice" name="newAddOnPrice" type="text" placeholder="Price (THB)" class="form-control">
+                    </div>
+                    <div class="col-2">
+                      <button type="button" class="btn btn-primary btn-block" onclick="customAddOn()">Add</button>
+                    </div>
+                  </div>
+                  
+                </div>
+                <select id="AddOnOptions" class="custom-select" multiple size="6">
                   <option value="1">Body Kit</option>
                   <option value="2">Spoilers</option>
                   <option value="3">Enhanced Film</option>
                   <option value="4">Leather Interior</option>
                   <option value="5">Golden Plates</option>
                 </select>
-                <table class="table">
-                  <tr>
-                    <td><input type="text" name="myText" placeholder="Choose Your Option" value="" selectBoxOptions="Canada;Denmark;Finland;Germany;Mexico;Norway;Sweden;United Kingdom;United States"></td>
-                  </tr>
-                </table>
               </form>
               <hr width=100%>
         </div>

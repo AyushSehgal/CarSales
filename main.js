@@ -147,3 +147,20 @@ function deleteInterest(divId) {
     card.parentNode.removeChild(card);
 }
 
+/** New Add-On
+ * Adds new item to select menu for user to add custom options for selection
+ * 
+ * Referenced In:
+ * - Add button in Div 3 - Add Ons "custom" form group in index.html
+ */
+function customAddOn() {
+    var selectOptions = document.getElementById("AddOnOptions");
+    console.log(selectOptions);
+    console.log(selectOptions.options);
+    var optionName = document.getElementById("newAddOnName").value;
+    if (optionName != '') {
+        selectOptions.options[selectOptions.options.length] = new Option(optionName, optionName, true, true);
+    }
+   
+}
+
