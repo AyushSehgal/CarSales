@@ -162,29 +162,40 @@ function customAddOn() {
         selectOptions.options[selectOptions.options.length] = newCustomOption;
     }  
 }
+/** Handle Checkbox Selections
+ * Created a counter id like the interest cards above so each added item has a unique id.
+ * Array created to ensure duplicates are not allowed when selecting items since add-ons can only be added once.
+ * Every selected item enters a selected items menu that is hidden at first in the UI.
+ * 
+ * Referenced In:
+ * - each checkbox value <option> in index.html 
+ */
 var k = 0;
 function selection() {
     k++;
     handleSelected(k);
 }
-let trackSelections = new Array();
+let trackSelections = new Array(); //array stores all addOn names, ensures no duplicates
 
 function handleSelected(k) {
+    // Grabs the menu and the name of the additions
     var menu = document.getElementById("AddOnOptions");
     var itemSelected = menu.options[menu.selectedIndex].text;
     
+    // Checks if item has been clicked on before (already in selected list)
+    // if it is then does nothing, if item does not yet exist, creates the item and adds it to the array.
     if (!trackSelections.includes(itemSelected)) {
         trackSelections.push(itemSelected);
         
+        // Creates form group for each option 
         var selectedItemDiv = document.createElement('div');
         selectedItemDiv.setAttribute('class', 'form-group');
         selectedItemDiv.setAttribute('id', "item" + k);
         var stringId = '\'' + selectedItemDiv.id + '\''; 
         selectedItemDiv.setAttribute('onclick', 'uncheckItem('+ stringId +')'); 
             
+        // Creates input element to be placed in form-group
         var selectedItemInput = document.createElement('input');
-        selectedItemInput.checked = true;
-                
         selectedItemInput.setAttribute('type', 'checkbox');
         selectedItemInput.setAttribute('class', 'custom-control-input');
         selectedItemDiv.appendChild(selectedItemInput);
@@ -192,17 +203,24 @@ function handleSelected(k) {
         selectedItemLabel.setAttribute('class', 'custom-control-label');
         selectedItemLabel.innerHTML = itemSelected;
             
+        // Creates label element to be placed in form-group
         selectedItemDiv.appendChild(selectedItemLabel);
         var selectedItems = document.getElementById('selectedItems');
         selectedItems.appendChild(selectedItemDiv);
-        selectedItems.setAttribute('style', '');
+        selectedItems.setAttribute('style', ''); //displays the initially hidden card
     }
 }
+/** Unchecks Selected Item 
+ * Removes selected item from the selected items menu and deletes it from the array so it can be rechecked if needed.
+ * 
+ * Referenced In:
+ * - When onclick value of newly created form-group for input options is changed (line 195)
+*/
 function uncheckItem(id) {
     var item = document.getElementById(id);
     var inputValue = item.childNodes[1].innerHTML;
     var index = trackSelections.indexOf(inputValue);
-    trackSelections.splice(index, 1);
+    trackSelections.splice(index, 1); 
     item.parentNode.removeChild(item);
 }
 
