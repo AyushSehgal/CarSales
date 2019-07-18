@@ -8,7 +8,6 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <script src="main.js"></script>
-        <style src="stylesheet.css"></style>
     </head>
     <body>
            <h1>Car Finances</h1>
@@ -113,7 +112,7 @@
           </div>
 
           <!-- Div 3 - Add Ons -->
-          <div class="container">
+          <div class="container" id="addOnItems">
               <legend>Add-Ons</legend>
               <form class="form-horizontal" id="addOnsForm">
                 <div class="form-group" id="custom">
@@ -131,17 +130,24 @@
                     <div class="col-2">
                       <button type="button" class="btn btn-primary btn-block" onclick="customAddOn()">Add</button>
                     </div>
-                  </div>
-                  
+                  </div> 
                 </div>
                 <select id="AddOnOptions" class="custom-select" multiple size="6">
-                  <option value="1">Body Kit</option>
-                  <option value="2">Spoilers</option>
-                  <option value="3">Enhanced Film</option>
-                  <option value="4">Leather Interior</option>
-                  <option value="5">Golden Plates</option>
+                  <option value="1" onclick="selection()">Body Kit</option>
+                  <option value="2" onclick="selection()">Spoilers</option>
+                  <option value="3" onclick="selection()">Enhanced Film</option>
+                  <option value="4" onclick="selection()">Leather Interior</option>
+                  <option value="5" onclick="selection()">Golden Plates</option>
                 </select>
-              </form>
+                <br>
+                <br>
+                <h6>Selected Items</h6>
+                <div id="selectedItems" class="custom-control custom-checkbox card" style="display:none">
+                  
+                </div>
+              
+              
+            </form>
               <hr width=100%>
         </div>
 

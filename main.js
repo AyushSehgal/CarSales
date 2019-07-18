@@ -155,12 +155,49 @@ function deleteInterest(divId) {
  */
 function customAddOn() {
     var selectOptions = document.getElementById("AddOnOptions");
-    console.log(selectOptions);
-    console.log(selectOptions.options);
     var optionName = document.getElementById("newAddOnName").value;
     if (optionName != '') {
         selectOptions.options[selectOptions.options.length] = new Option(optionName, optionName, true, true);
-    }
-   
+    }  
+}
+var k = 0;
+function selection() {
+    console.log("entered helper");
+    k++;
+    handleSelected(k);
+}
+
+function handleSelected(k) {
+    var menu = document.getElementById("AddOnOptions");
+    var itemSelected = menu.options[menu.selectedIndex].text;
+ 
+    var selectedItems = document.getElementById('selectedItems');
+
+    var selectedItemDiv = document.createElement('div');
+    selectedItemDiv.setAttribute('class', 'form-group');
+    selectedItemDiv.setAttribute('id', k);
+    var selectedItemInput = document.createElement('input');
+    selectedItemInput.checked = true;
+    selectedItemInput.setAttribute('id', 'itemSelected');
+    var stringId = '\'' + k + '\''; 
+    
+    selectedItemInput.setAttribute('onclick', 'uncheckItem('+ stringId +')'); 
+    selectedItemInput.setAttribute('type', 'checkbox');
+    selectedItemInput.setAttribute('class', 'custom-control-input');
+    selectedItemDiv.appendChild(selectedItemInput);
+    var selectedItemLabel = document.createElement('label');
+    selectedItemLabel.setAttribute('class', 'custom-control-label');
+    selectedItemLabel.setAttribute('for', 'itemSelected');
+    selectedItemLabel.innerHTML = itemSelected;
+    selectedItemDiv.appendChild(selectedItemLabel);
+    
+    selectedItems.appendChild(selectedItemDiv);
+    selectedItems.setAttribute('style', '');
+    
+
+}
+function uncheckItem(id) {
+    var item = document.getElementById(id);
+    item.parentNode.removeChild(item);
 }
 

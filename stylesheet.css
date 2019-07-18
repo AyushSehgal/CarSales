@@ -1,3 +1,7 @@
 .boxed {
     border: 10px solid black; 
 }
+
+h6 {
+    color: gray;
+}
