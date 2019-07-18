@@ -170,34 +170,34 @@ function selection() {
 function handleSelected(k) {
     var menu = document.getElementById("AddOnOptions");
     var itemSelected = menu.options[menu.selectedIndex].text;
- 
-    var selectedItems = document.getElementById('selectedItems');
-
+       
     var selectedItemDiv = document.createElement('div');
     selectedItemDiv.setAttribute('class', 'form-group');
-    selectedItemDiv.setAttribute('id', k);
+    selectedItemDiv.setAttribute('id', "item" + k);
+    var stringId = '\'' + selectedItemDiv.id + '\''; 
+    selectedItemDiv.setAttribute('onclick', 'uncheckItem('+ stringId +')'); 
+        
     var selectedItemInput = document.createElement('input');
     selectedItemInput.checked = true;
-    selectedItemInput.setAttribute('id', 'itemSelected');
-    var stringId = '\'' + k + '\''; 
-    
-    selectedItemInput.setAttribute('onclick', 'uncheckItem('+ stringId +')'); 
+              
     selectedItemInput.setAttribute('type', 'checkbox');
     selectedItemInput.setAttribute('class', 'custom-control-input');
     selectedItemDiv.appendChild(selectedItemInput);
     var selectedItemLabel = document.createElement('label');
     selectedItemLabel.setAttribute('class', 'custom-control-label');
-    selectedItemLabel.setAttribute('for', 'itemSelected');
     selectedItemLabel.innerHTML = itemSelected;
+        
     selectedItemDiv.appendChild(selectedItemLabel);
-    
+    var selectedItems = document.getElementById('selectedItems');
     selectedItems.appendChild(selectedItemDiv);
     selectedItems.setAttribute('style', '');
     
-
 }
 function uncheckItem(id) {
+    console.log("-----uncheckItem()-----");
+    console.log("identification: " + id);
     var item = document.getElementById(id);
+    console.log(item.id);
     item.parentNode.removeChild(item);
 }
 
