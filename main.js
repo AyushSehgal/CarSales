@@ -155,9 +155,11 @@ function deleteInterest(divId) {
  */
 function customAddOn() {
     var selectOptions = document.getElementById("AddOnOptions");
-    var optionName = document.getElementById("newAddOnName").value;
-    if (optionName != '') {
-        selectOptions.options[selectOptions.options.length] = new Option(optionName, optionName, true, true);
+    var optionNameValue = document.getElementById("newAddOnName").value;
+    if (optionNameValue != '') {
+        var newCustomOption = new Option(optionNameValue, optionNameValue, true, true);
+        newCustomOption.setAttribute('onclick', 'selection()');
+        selectOptions.options[selectOptions.options.length] = newCustomOption;
     }  
 }
 var k = 0;
