@@ -133,7 +133,17 @@
                   </div> 
                 </div>
                 <select id="AddOnOptions" class="custom-select" multiple size="6">
-                  <option value="1" onclick="selection()">Body Kit</option>
+                  <div class="row">
+                    <div class="col">
+                        <option value="1" onclick="selection()">Body Kit</option>
+                    </div>
+                    <div class="col">
+                        <label>5000</label>
+                    </div>
+                    <div class="col">
+                        <label>5500</label>
+                    </div>
+                  </div>
                   <option value="2" onclick="selection()">Spoilers</option>
                   <option value="3" onclick="selection()">Enhanced Film</option>
                   <option value="4" onclick="selection()">Leather Interior</option>
@@ -143,10 +153,7 @@
                 <br>
                 <h6>Selected Items</h6>
                 <div id="selectedItems" class="custom-control custom-checkbox card" style="display:none">
-                  
                 </div>
-              
-              
             </form>
               <hr width=100%>
         </div>

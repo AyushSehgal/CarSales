@@ -197,6 +197,7 @@ function handleSelected(k) {
         // Creates input element to be placed in form-group
         var selectedItemInput = document.createElement('input');
         selectedItemInput.setAttribute('type', 'checkbox');
+        selectedItemInput.checked = true;
         selectedItemInput.setAttribute('class', 'custom-control-input');
         selectedItemDiv.appendChild(selectedItemInput);
         var selectedItemLabel = document.createElement('label');
