@@ -2,9 +2,16 @@
 //     alert("jquery loaded");
 // });
 
+/** Use Input Picker jQuery Plugin 
+ * This Multi-column Dropdown Plugin allows select menus to have multiple columns of data.
+ * The data will be fetched from a JSON file that is connected to the mySQL database for this web app.
+ * 
+ * Referenced In: 
+ * - "options" input field in index.html
+*/
 $(document).ready(function(){
 
-  $('#demo').inputpicker({
+  $('#options').inputpicker({
     data:[
       {name:"Body Kit", cost:"5000", price:"5500"},
       {name:"Spoilers", cost:"2500", price:"3000"},
