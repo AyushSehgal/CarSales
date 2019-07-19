@@ -7,7 +7,9 @@
         <title>Car Finances</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <script src="main.js"></script>
+        <script src="scripts/main.js"></script>
+        <script src="scripts/jquery.inputpicker.js"></script>
+        <script src="scripts/jquery-3.4.1.js"></script>
     </head>
     <body>
            <h1>Car Finances</h1>
@@ -133,17 +135,7 @@
                   </div> 
                 </div>
                 <select id="AddOnOptions" class="custom-select" multiple size="6">
-                  <div class="row">
-                    <div class="col">
-                        <option value="1" onclick="selection()">Body Kit</option>
-                    </div>
-                    <div class="col">
-                        <label>5000</label>
-                    </div>
-                    <div class="col">
-                        <label>5500</label>
-                    </div>
-                  </div>
+                  <option value="1" onclick="selection()">Body Kit</option>
                   <option value="2" onclick="selection()">Spoilers</option>
                   <option value="3" onclick="selection()">Enhanced Film</option>
                   <option value="4" onclick="selection()">Leather Interior</option>
