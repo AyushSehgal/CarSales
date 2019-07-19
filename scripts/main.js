@@ -162,6 +162,7 @@ function customAddOn() {
         selectOptions.options[selectOptions.options.length] = newCustomOption;
     }  
 }
+
 /** Handle Checkbox Selections
  * Created a counter id like the interest cards above so each added item has a unique id.
  * Array created to ensure duplicates are not allowed when selecting items since add-ons can only be added once.
@@ -224,4 +225,6 @@ function uncheckItem(id) {
     trackSelections.splice(index, 1); 
     item.parentNode.removeChild(item);
 }
+
+
 

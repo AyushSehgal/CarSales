@@ -7,7 +7,12 @@
         <title>Car Finances</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <script src="main.js"></script>
+        <link rel="stylesheet" href="scripts/jquery.inputpicker.css">
+        <script src="scripts/jquery-3.4.1.js"></script>
+        <script src="scripts/jquery.inputpicker.js"></script>
+        <script src="scripts/jQueryScript.js"></script>
+        <script src="scripts/main.js"></script>
+        
     </head>
     <body>
            <h1>Car Finances</h1>
@@ -132,18 +137,11 @@
                     </div>
                   </div> 
                 </div>
+                <h6>Select Your Option</h6>
+                <input class="form-control" id="demo"></input>  
+                <br>
                 <select id="AddOnOptions" class="custom-select" multiple size="6">
-                  <div class="row">
-                    <div class="col">
-                        <option value="1" onclick="selection()">Body Kit</option>
-                    </div>
-                    <div class="col">
-                        <label>5000</label>
-                    </div>
-                    <div class="col">
-                        <label>5500</label>
-                    </div>
-                  </div>
+                  <option value="1" onclick="selection()">Body Kit</option>
                   <option value="2" onclick="selection()">Spoilers</option>
                   <option value="3" onclick="selection()">Enhanced Film</option>
                   <option value="4" onclick="selection()">Leather Interior</option>
@@ -158,6 +156,8 @@
               <hr width=100%>
         </div>
 
+        
+
          <!-- Div 4 - Vehicle Name -->
          <div class="container">
            <legend>Vehicle</legend>
@@ -168,8 +168,9 @@
          <br>
          <input type="submit" class="btn-block btn-success btn-lg" value="Submit">
          <br>
-         <br>       
-
+         <br>  
+         
+        
     </body>
     
 </html>
