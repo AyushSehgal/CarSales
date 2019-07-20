@@ -38,6 +38,7 @@ $(document).ready(function(){
         {name:'cost',text:'Cost'},
         {name:'price',text:'Price'}
       ],
+      headShow: true,
       fieldText:'name',
       fieldValue:'cost',
       filterOpen: true,
