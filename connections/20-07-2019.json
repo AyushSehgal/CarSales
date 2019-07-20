@@ -1,0 +1,10 @@
+
+[
+{"id":"0","name":"Name","cost":"Cost","price":"Price"},
+{"id":"1","name":"Body Kit","cost":"5000","price":"5500"},
+{"id":"2","name":"Spoilers","cost":"2500","price":"3000"},
+{"id":"3","name":"Enhanced Film","cost":"6000","price":"6500"},
+{"id":"4","name":"Golden Plates","cost":"9000","price":"9500"},
+{"id":"5","name":"Leather Interior","cost":"6000","price":"6500"}
+]
+
