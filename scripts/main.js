@@ -85,7 +85,7 @@ function calcInstallments(digit) {
     var outputInstallment = theForm2.elements["installment" + digit];
     var years = parseInt(theForm2.elements["years" + digit].value);
     var interest = parseInt(theForm2.elements["interest" + digit].value);
-    var financialValue = calcFinVal();
+    var financialValue = calcFinanceVal();
 
     var installmentValue = ((financialValue * (interest / 100) * years) + financialValue) / (years * 12);
 
@@ -274,7 +274,7 @@ function saveAddOn() {
         AddOnPrice.innerHTML = customPrice;
         var AddedButton = document.createElement('button');
         AddedButton.setAttribute('type', 'button');
-        AddedButton.setAttribute('class', 'btn btn-danger btn-small');
+        AddedButton.setAttribute('class', 'btn btn-danger btn-sm');
         AddedButton.innerHTML = 'Remove';  
         newAddOnRow.appendChild(AddOnName);
         newAddOnRow.appendChild(AddOnCost);
