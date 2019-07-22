@@ -254,27 +254,39 @@ function uncheckItem(id) {
     trackSelectionsMenu.splice(index, 1);
     item.parentNode.removeChild(item);
 }
+
 let newAddedNames = new Array();
 function saveAddOn() {
-    var myTable = document.getElementById('optionsTable');
+    var myTable = document.getElementById('selectedTable');
     var body = myTable.childNodes[3];
     var customName = document.getElementById('newAddOnName').value;
     var customCost = document.getElementById('newAddOnCost').value;
     var customPrice = document.getElementById('newAddOnPrice').value;
     if (!(customName == "" || customCost == "" || customPrice == "")) {
         var newAddOnRow = document.createElement('tr');
+        newAddOnRow.setAttribute('id', customName);
         var AddOnName = document.createElement('td');
         AddOnName.innerHTML = customName;
         var AddOnCost = document.createElement('td');
         AddOnCost.innerHTML = customCost;
         var AddOnPrice = document.createElement('td');
         AddOnPrice.innerHTML = customPrice;
+        var AddedButton = document.createElement('button');
+        AddedButton.setAttribute('type', 'button');
+        AddedButton.setAttribute('class', 'btn btn-danger btn-small');
+        AddedButton.innerHTML = 'Remove';  
         newAddOnRow.appendChild(AddOnName);
         newAddOnRow.appendChild(AddOnCost);
         newAddOnRow.appendChild(AddOnPrice);
+        newAddOnRow.appendChild(AddedButton);
+        var stringId = '\'' + newAddOnRow.id + '\''; 
+        console.log(stringId);
+        newAddOnRow.setAttribute('onclick', 'uncheckItem('+ stringId +')');
         if (!trackSelectionsMenu.includes(customName)) {
             trackSelectionsMenu.push(customName);
             body.appendChild(newAddOnRow);
+            var selectedItems = document.getElementById('selectedItems');
+            selectedItems.setAttribute('style', '');
         } else {
             alert('Already Added this Add-On');
         }
