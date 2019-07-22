@@ -114,7 +114,7 @@
                       <input id="interest0" name="interest0" oninput="calcInstallments(this.id[8])" type="text" class="form-control">
                   </div>
                   <div class="form-group">
-                      <label for="installment0"><strong>Installment Value Per Year (THB): </strong></label>                        
+                      <label for="installment0"><strong>Installment Value Per Month (THB): </strong></label>                        
                       <output id="installment0" name="installment0" for="years0 interest0"></output>
                   </div>
                   </form>
@@ -142,14 +142,13 @@
                       <input id="newAddOnPrice" name="newAddOnPrice" type="text" placeholder="Price (THB)" class="form-control">
                     </div>
                     <div class="col-2">
-                      <button type="submit" name="add" id="add" class="btn btn-primary btn-block" >Add</button>  <!--onclick="customAddOn()"-->
+                      <button type="submit" name="add" id="add" class="btn btn-primary btn-block">Add</button>  <!--onclick="customAddOn()"-->
                     </div>
                   </div> 
                 </form>
                 </div>
-                <h6>Select Your Option</h6>
-                <input class="form-control" id="options"></input>  
-                <br>
+                <h6>Select Your Options</h6>
+                <!--input class="form-control" id="options"></input-->  
                 <select id="AddOnOptions" class="custom-select" multiple size="6">
                   <option value="1" onclick="selection()"><label>Body Kit</label></option>
                   <option value="2" onclick="selection()">Spoilers</option>
