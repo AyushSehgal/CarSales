@@ -7,9 +7,8 @@
         <title>Car Finances</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="scripts/jquery.inputpicker.css">
         <script src="scripts/jquery-3.4.1.js"></script>
-        <script src="scripts/jquery.inputpicker.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script src="node_modules/jsPDF-1.3.2/dist/jspdf.min.js"></script>
         <script src="scripts/jQueryScript.js"></script>
         <script src="scripts/main.js"></script>
@@ -17,6 +16,17 @@
         
     </head>
     <body>
+    <?php 
+            $connect = mysqli_connect('localhost', 'ayush', 'nandinisehgal', 'car_finances');
+            
+            $query = "SELECT item, cost, price FROM addOns";
+            if(!mysqli_query($connect, $query)) {
+              echo 'Not Inserted';
+          } else {
+            $result = mysqli_query($connect, $query);
+          }
+            
+          ?>
            <h1>Car Finances</h1>
            <!-- Div 1 - Financial Value -->
            <div class="container">
@@ -124,10 +134,11 @@
               
           </div>
 
+          
           <!-- Div 3 - Add Ons -->
           <div class="container" id="addOnItems">
               <legend>Add-Ons</legend>
-              <form class="form-horizontal" id="addOnsForm">
+              <form class="form-horizontal" id="addOnsForm" method="POST">
                   <h6>Custom Add-On</h6>
                   <div class="row">
                     <div class="col-4">
@@ -150,37 +161,23 @@
                 <table class="table" id="optionsTable">
                   <thead>
                     <tr>
-                      <th scope="col">Name</th>
+                      <th scope="col">Item</th>
                       <th scope="col">Cost (THB)</th>
                       <th scope="col">Price (THB)</th>
                     </tr>
                   </thead>
                   <tbody id="selectedBody">
-                    <tr onclick="selection()">
-                      <td>Body Kit</td>
-                      <td>5000</td>
-                      <td>5500</td>
-                    </tr>
-                    <tr onclick="selection()">
-                      <td>Spoilers</td>
-                      <td>6000</td>
-                      <td>6300</td>
-                    </tr>
-                    <tr onclick="selection()">
-                      <td>Enhanced Film</td>
-                      <td>2000</td>
-                      <td>2500</td>
-                    </tr>
-                    <tr onclick="selection()">
-                      <td>Leather Interior</td>
-                      <td>3000</td>
-                      <td>3500</td>
-                    </tr>
-                    <tr onclick="selection()">
-                      <td>Golden Plates</td>
-                      <td>7500</td>
-                      <td>8000</td>
-                    </tr>
+                    <?php 
+                    foreach($result as $row) {
+                      echo '
+                      <tr onclick="selection()">
+                          <td>'.$row["item"].'</td>
+                          <td>'.$row["cost"].'</td>
+                          <td>'.$row["price"].'</td>
+                      </tr>
+                      ';
+                    }
+                    ?>
                   </tbody> 
                 </table>
               </div>

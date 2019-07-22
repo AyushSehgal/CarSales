@@ -26,12 +26,26 @@
     // } else {
     //     echo 'There is some error';
     // }
-    $conn = mysqli_connect("localhost", "ayush", "nandinisehgal", "car_finances");
-    if ($conn->connect_error) {
-        die("Connection Failed: " . $conn->connect_error);
-    }
 
-    $sql = "SELECT name, cost, price FROM addOns";
-    $result = mysql_query($sql);
-    $conn->close();
+    $connect = new PDO("mysql:host=localhost;dbname=car_finances", "ayush", "nandinisehgal");
+
+    $data = array(
+        ':item'     => $_POST["newAddOnName"],
+        ':cost'     => $_POST["newAddOnCost"],
+        ':price'     => $_POST["newAddOnPrice"]
+    );
+
+    $query = "INSERT INTO addOns (item, cost, price) VALUES (:item, :cost, :price)";
+    $statement = $connect->prepare($query);
+
+    if($statement->execute($data)) {
+        $output = array(
+            'item' => $_POST['newAddOnName'],
+            'cost' => $_POST['newAddOnCost'],
+            'price'=> $_POST['newAddOnPrice']
+        );
+
+        echo json_encode($output);
+    }
+   
 ?>

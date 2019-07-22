@@ -2,47 +2,29 @@
 //     alert("jquery loaded");
 // });
 
-/** Use Input Picker jQuery Plugin 
- * This Multi-column Dropdown Plugin allows select menus to have multiple columns of data.
- * The data will be fetched from a JSON file that is connected to the mySQL database for this web app.
- * 
- * Referenced In: 
- * - "options" input field in index.html
-*/
 $(document).ready(function(){
-
-  // $('#options').inputpicker({
-  //   data:[
-  //     {name:"Body Kit", cost:"5000", price:"5500"},
-  //     {name:"Spoilers", cost:"2500", price:"3000"},
-  //     {name:"Enhanced Film", cost:"1000", price:"1300"},
-  //     {name:"Leather Interior", cost:"6000", price:"6500"},
-  //     {name:"Golden Plates", cost:"9000", price:"9500"},
-  //   ],
-  //   fields:[
-  //     {name:'name',text:'Name'},
-  //     {name:'cost',text:'Cost'},
-  //     {name:'price',text:'Price'}
-  //   ],
-  //   headShow: true,
-  //   fieldText : 'name',
-  //   fieldValue: 'cost',
-  //   multiple: true,
-  //   highlightResult: true,
-  // });
-
-    $('#options').inputpicker({
-      url: '/connections/20-07-2019.json',
-      fields:[
-        {name:'name',text:'Name'},
-        {name:'cost',text:'Cost'},
-        {name:'price',text:'Price'}
-      ],
-      headShow: true,
-      fieldText:'name',
-      fieldValue:'cost',
-      filterOpen: true,
-      multiple: true,
-      highlightResult: true
+    $('#addOnsForm').on('submit', function(event){
+        event.preventDefault();
+        $.ajax({
+          url:"connections/addOnData.php",
+          method:"POST",
+          data:$(this).serialize(),
+          dataType:"json",
+          beforeSend: function() {
+            $('#add').attr('disabled','disabled');
+          },
+          success:function(data){
+            $('#add').attr('disabled', false);
+            if(data.item) {
+              var html = '<tr>';
+              html += '<td>'+data.item+'</td>';
+              html += '<td>'+data.cost+'</td>';
+              html += '<td>'+data.price+'</td>';
+              $('#optionsTable').prepend(html);
+              $('#addOnsForm')[0].reset();
+            }
+          }
+        })
     });
+
 });
