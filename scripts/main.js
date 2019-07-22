@@ -184,7 +184,9 @@ function selection() {
                 console.log(trackSelections.length);
                 k++;
                 handleSelected(rowSelected, k);
-            } //else {
+            } else {
+                alert('Already Added this Add-On');
+            }  //else {
         //         rowSelected.style.backgroundColor = "";
         //         rowSelected.classList.remove('selected');
         //         var ind = trackSelections.indexOf(rowSelected);
@@ -234,7 +236,7 @@ function handleSelected(row, k) {
         console.log(selectedItemLabel);
         var selectedItems = document.getElementById('selectedItems');
         selectedItems.setAttribute('style', '');
-    }  
+    } 
 }
 
 /** Unchecks Selected Item 
