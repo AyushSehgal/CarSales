@@ -49,33 +49,39 @@
                       <label for="downPayment">Down Payment</label>   
                       <div class=radio>
                         <label for="downPayment-0">
-                          <input type="radio" name="downPayment" id="downPayment-0" value="15" onclick="calcFinVal()">
+                          <input type="radio" name="downPayment" id="downPayment-0" value="15" onclick="calcDownVal(); calcFinanceVal()">
                           15%
                         </label>
 
                         <br>
 
                         <label for="downPayment-1">
-                          <input type="radio" name="downPayment" id="downPayment-1" value="20" onclick="calcFinVal()">
+                          <input type="radio" name="downPayment" id="downPayment-1" value="20" onclick="calcDownVal(); calcFinanceVal()">
                         20%
                         </label>
                         
                         <br>
 
                         <label for="downPayment-2">
-                          <input type="radio" name="downPayment" id="downPayment-2" value="25" onclick="calcFinVal()">
+                          <input type="radio" name="downPayment" id="downPayment-2" value="25" onclick="calcDownVal(); calcFinanceVal()">
                         25%
                         </label>
                         
                         <br>
                         <label for="downPayment-3">
-                          <input type="radio" name="downPayment" id="downPayment-3" value="other" onclick="calcFinVal()">
+                          <input type="radio" name="downPayment" id="downPayment-3" value="other" onclick="calcDownVal(); calcFinanceVal()">
                           Other:
                         </label>
-                        <input id="otherRadio" oninput="calcFinVal()" name="otherRadio" type="text" placeholder="%">
+                        <input id="otherRadio" oninput="calcDownVal(); calcFinanceVal()" name="otherRadio" type="text" placeholder="%">
                       </div> 
                     </div>
                   
+                    <!-- Text output-->
+                    <div class="form-group">
+                      <label for="downVal"><strong>Down Payment Value (THB): </strong></label>                        
+                      <output id="downVal" name="downVal" for="originalPrice addOn downPayment"></output>
+                    </div>
+
                     <!-- Text output-->
                     <div class="form-group">
                       <label for="finVal"><strong>Finance Value (THB): </strong></label>                        

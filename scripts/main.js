@@ -55,16 +55,26 @@ function getDownPayment() {
  * - downPayment radio buttons in index.html
  * - calcInstallments() 
  */
-function calcFinVal() {
+function calcDownVal() {
     var theForm1 = document.getElementById("carform");
-    var outputFinVal = theForm1.elements["finVal"];
+    var outputDownVal = theForm1.elements["downVal"];
     var total = getCarPriceTotal();
     var down = getDownPayment();
     
-    var finVal = total * (down / 100);
+    var downVal = total * (down / 100);
 
-    outputFinVal.value = finVal.toFixed(2);
-    return finVal; 
+    outputDownVal.value = downVal.toFixed(2);
+    return downVal; 
+}
+function calcFinanceVal() {
+    var formu = document.getElementById("carform");
+    var outputFinanceVal = formu.elements["finVal"];
+    var total = getCarPriceTotal();
+    var downpayment = calcDownVal();
+
+    var finVal = total - downpayment;
+    outputFinanceVal.value = finVal.toFixed(2);
+    return finVal;
 }
 /** Calculate Installment Values
  * Parses data from years and interest (convert to decimal) 
