@@ -182,46 +182,38 @@ function customAddOn() {
  * - each checkbox value <option> in index.html 
  */
 var k = 0;
+let trackSelections = new Array(); 
 function selection() {
-    k++;
-    handleSelected(k);
-}
-let trackSelections = new Array(); //array stores all addOn names, ensures no duplicates
-
-function handleSelected(k) {
-    // Grabs the menu and the name of the additions
-    var menu = document.getElementById("AddOnOptions");
-    var itemSelected = menu.options[menu.selectedIndex].text;
-    
-    // Checks if item has been clicked on before (already in selected list)
-    // if it is then does nothing, if item does not yet exist, creates the item and adds it to the array.
-    if (!trackSelections.includes(itemSelected)) {
-        trackSelections.push(itemSelected);
-        
-        // Creates form group for each option 
-        var selectedItemDiv = document.createElement('div');
-        selectedItemDiv.setAttribute('class', 'form-group');
-        selectedItemDiv.setAttribute('id', "item" + k);
-        var stringId = '\'' + selectedItemDiv.id + '\''; 
-        selectedItemDiv.setAttribute('onclick', 'uncheckItem('+ stringId +')'); 
-            
-        // Creates input element to be placed in form-group
-        var selectedItemInput = document.createElement('input');
-        selectedItemInput.setAttribute('type', 'checkbox');
-        selectedItemInput.checked = true;
-        selectedItemInput.setAttribute('class', 'custom-control-input');
-        selectedItemDiv.appendChild(selectedItemInput);
-        var selectedItemLabel = document.createElement('label');
-        selectedItemLabel.setAttribute('class', 'custom-control-label');
-        selectedItemLabel.innerHTML = itemSelected;
-            
-        // Creates label element to be placed in form-group
-        selectedItemDiv.appendChild(selectedItemLabel);
-        var selectedItems = document.getElementById('selectedItems');
-        selectedItems.appendChild(selectedItemDiv);
-        selectedItems.setAttribute('style', ''); //displays the initially hidden card
+    var menu = document.getElementById("optionsTable");
+    var cells = menu.getElementsByTagName('td');
+    for (let l = 0; l < cells.length; l++) {
+        var cell = cells[l];   
+        cell.onclick = function () {
+            var rowId = this.parentNode.rowIndex;
+            var rowSelected = menu.getElementsByTagName('tr')[rowId]; 
+            if (!trackSelections.includes(rowSelected)) {
+                rowSelected.style.backgroundColor = "#dee2e6";
+                rowSelected.className += " selected";
+                trackSelections.push(rowSelected);
+                console.log(trackSelections);
+                console.log(trackSelections.length);
+            } else {
+                rowSelected.style.backgroundColor = "";
+                rowSelected.classList.remove('selected');
+                var ind = trackSelections.indexOf(rowSelected);
+                trackSelections.splice(ind, 1) ;
+                console.log(trackSelections);
+                console.log(trackSelections.length);
+            }
+        }
     }
 }
+
+
+function handleSelected(k) {
+    
+}
+
 /** Unchecks Selected Item 
  * Removes selected item from the selected items menu and deletes it from the array so it can be rechecked if needed.
  * 

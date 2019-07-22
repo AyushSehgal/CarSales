@@ -148,15 +148,44 @@
                 </form>
                 </div>
                 <h6>Select Your Options</h6>
-                <!--input class="form-control" id="options"></input-->  
-                <select id="AddOnOptions" class="custom-select" multiple size="6">
-                  <option value="1" onclick="selection()"><label>Body Kit</label></option>
-                  <option value="2" onclick="selection()">Spoilers</option>
-                  <option value="3" onclick="selection()">Enhanced Film</option>
-                  <option value="4" onclick="selection()">Leather Interior</option>
-                  <option value="5" onclick="selection()">Golden Plates</option>
-                </select>
-                <br>
+                <div class="card">
+                <table class="table" id="optionsTable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Cost (THB)</th>
+                      <th scope="col">Price (THB)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr onclick="selection()">
+                      <td>Body Kit</td>
+                      <td>5000</td>
+                      <td>5500</td>
+                    </tr>
+                    <tr onclick="selection()">
+                      <td>Spoilers</td>
+                      <td>6000</td>
+                      <td>6300</td>
+                    </tr>
+                    <tr onclick="selection()">
+                      <td>Enhanced Film</td>
+                      <td>2000</td>
+                      <td>2500</td>
+                    </tr>
+                    <tr onclick="selection()">
+                      <td>Leather Interior</td>
+                      <td>3000</td>
+                      <td>3500</td>
+                    </tr>
+                    <tr onclick="selection()">
+                      <td>Golden Plates</td>
+                      <td>7500</td>
+                      <td>8000</td>
+                    </tr>
+                  </tbody> 
+                </table>
+              </div>
                 <br>
                 <h6>Selected Items</h6>
                 <div id="selectedItems" class="custom-control custom-checkbox card" style="display:none">
