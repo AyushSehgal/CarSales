@@ -182,7 +182,8 @@ function customAddOn() {
  * - each checkbox value <option> in index.html 
  */
 var k = 0;
-let trackSelections = new Array(); 
+let trackSelections = new Array();
+let trackSelectionsMenu = new Array(); 
 function selection() {
     var menu = document.getElementById("optionsTable");
     var cells = menu.getElementsByTagName('td');
@@ -192,26 +193,64 @@ function selection() {
             var rowId = this.parentNode.rowIndex;
             var rowSelected = menu.getElementsByTagName('tr')[rowId]; 
             if (!trackSelections.includes(rowSelected)) {
-                rowSelected.style.backgroundColor = "#dee2e6";
-                rowSelected.className += " selected";
+                // rowSelected.style.backgroundColor = "#dee2e6";
+                // rowSelected.className += " selected";
                 trackSelections.push(rowSelected);
                 console.log(trackSelections);
                 console.log(trackSelections.length);
-            } else {
-                rowSelected.style.backgroundColor = "";
-                rowSelected.classList.remove('selected');
-                var ind = trackSelections.indexOf(rowSelected);
-                trackSelections.splice(ind, 1) ;
-                console.log(trackSelections);
-                console.log(trackSelections.length);
-            }
+                k++;
+                handleSelected(rowSelected, k);
+            } //else {
+        //         rowSelected.style.backgroundColor = "";
+        //         rowSelected.classList.remove('selected');
+        //         var ind = trackSelections.indexOf(rowSelected);
+        //         trackSelections.splice(ind, 1) ;
+        //         console.log(trackSelections);
+        //         console.log(trackSelections.length);
+        //    }
         }
     }
 }
 
 
-function handleSelected(k) {
-    
+function handleSelected(row, k) {
+    console.log("Entered HandleSelected");
+    console.log(row.childNodes);
+    if (!trackSelectionsMenu.includes(row)) {
+        trackSelectionsMenu.push(row);
+
+        // Creates input checkbox element to be placed in table
+        var selectedItemInput = document.createElement('button');
+        selectedItemInput.setAttribute('type', 'button');
+        selectedItemInput.setAttribute('class', 'btn btn-danger btn-small');
+        selectedItemInput.innerHTML = 'Remove';
+
+        var selectedBody = document.getElementById('bodySelected');
+        
+        //Creates table data for options 
+        var selectedItemLabel = document.createElement('tr');
+        var selectedItemLabelName = document.createElement('td');
+        selectedItemLabelName.innerHTML = row.childNodes[1].innerHTML;
+        var selectedItemLabelCost = document.createElement('td');
+        selectedItemLabelCost.innerHTML = row.childNodes[3].innerHTML;
+        var selectedItemLabelPrice = document.createElement('td');
+        selectedItemLabelPrice.innerHTML = row.childNodes[5].innerHTML;
+        selectedItemInputCell = document.createElement('td');
+        selectedItemInputCell.appendChild(selectedItemInput);
+        selectedItemLabel.appendChild(selectedItemLabelName);
+        selectedItemLabel.appendChild(selectedItemLabelCost);
+        selectedItemLabel.appendChild(selectedItemLabelPrice);
+        selectedItemLabel.appendChild(selectedItemInputCell);
+        selectedItemLabel.setAttribute('id', "item" + k);
+        selectedBody.appendChild(selectedItemLabel);
+        var stringId = '\'' + selectedItemLabel.id + '\''; 
+        console.log(stringId);
+        selectedItemInput.setAttribute('onclick', 'uncheckItem('+ stringId +')');
+        console.log(selectedBody);
+        console.log(selectedItemLabel);
+        var selectedItems = document.getElementById('selectedItems');
+        selectedItems.setAttribute('style', '');
+    }  
 }
 
 /** Unchecks Selected Item 
@@ -221,10 +260,12 @@ function handleSelected(k) {
  * - When onclick value of newly created form-group for input options is changed (line 195)
 */
 function uncheckItem(id) {
+    console.log("Entered UncheckItem");
     var item = document.getElementById(id);
-    var inputValue = item.childNodes[1].innerHTML;
+    var inputValue = item.childNodes[1];
     var index = trackSelections.indexOf(inputValue);
     trackSelections.splice(index, 1); 
+    trackSelectionsMenu.splice(index, 1);
     item.parentNode.removeChild(item);
 }
 

@@ -127,10 +127,8 @@
           <!-- Div 3 - Add Ons -->
           <div class="container" id="addOnItems">
               <legend>Add-Ons</legend>
-              <form class="form-horizontal" id="addOnsForm">
-                <div class="form-group" id="custom">
+              <form class="form-horizontal" id="addOnsForm" action="connections/connect.php" method="POST">
                   <h6>Custom Add-On</h6>
-                  <form class="form-horizontal" action="connections/connect.php" method="POST">
                   <div class="row">
                     <div class="col-4">
                       <input id="newAddOnName" name="newAddOnName" type="text" placeholder="Name" class="form-control">
@@ -142,11 +140,11 @@
                       <input id="newAddOnPrice" name="newAddOnPrice" type="text" placeholder="Price (THB)" class="form-control">
                     </div>
                     <div class="col-2">
-                      <button type="submit" name="add" id="add" class="btn btn-primary btn-block">Add</button>  <!--onclick="customAddOn()"-->
+                      <button type="submit" name="add" id="add" class="btn btn-primary btn-block">Add</button>  <!--onclick="customAddOn()"-->                  
                     </div>
-                  </div> 
+                  </div>
                 </form>
-                </div>
+                <br>
                 <h6>Select Your Options</h6>
                 <div class="card">
                 <table class="table" id="optionsTable">
@@ -163,7 +161,7 @@
                       <td>5000</td>
                       <td>5500</td>
                     </tr>
-                    <tr onclick="selection()">
+                    <!-- <tr onclick="selection()">
                       <td>Spoilers</td>
                       <td>6000</td>
                       <td>6300</td>
@@ -182,15 +180,27 @@
                       <td>Golden Plates</td>
                       <td>7500</td>
                       <td>8000</td>
-                    </tr>
+                    </tr> -->
                   </tbody> 
                 </table>
               </div>
                 <br>
                 <h6>Selected Items</h6>
                 <div id="selectedItems" class="custom-control custom-checkbox card" style="display:none">
+                  <table id="selectedTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Cost (THB)</th>
+                            <th scope="col">Price (THB)</th>
+                            <th scope="col"></th>
+                        </tr>  
+                    </thead>
+                    <tbody id="bodySelected">
+
+                    </tbody>
+                  </table>
                 </div>
-            </form>
               <hr width=100%>
         </div>
         

@@ -8,18 +8,20 @@
         if (!$conn) {
             echo 'Connection error: ' . mysqli_connect_error();
         }
+        
+        $item = $_POST['newAddOnName'];
+        $cost = $_POST['newAddOnCost'];
+        $price = $_POST['newAddOnPrice'];
 
-        $sql = "INSERT INTO car_finances (name, cost, price) VALUES ('{$conn->real_escape_string($_POST['newAddOnName'])}','{$conn->real_escape_string($_POST['newAddOnCost'])}', '{$conn->real_escape_string($_POST['newAddOnPrice'])}')";
-        $insert = $conn->query($sql);
-
-        if($insert) {
-            echo "Success! Row ID: {$conn->insert_id}";
+        $sql = "INSERT INTO addOns (item, cost, price) VALUES ('$item', '$cost', '$price')";
+        
+        if(!mysqli_query($conn, $sql)) {
+            echo 'Not Inserted';
         } else {
-            die("Error: {$conn->errono} : {$conn->error}");
+            echo 'Inserted';
         }
 
-        $conn->close();
+        header("refresh:2; url=/carsales/index.html");
     }
-
     
 ?>
