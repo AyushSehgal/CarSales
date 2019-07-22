@@ -127,7 +127,7 @@
           <!-- Div 3 - Add Ons -->
           <div class="container" id="addOnItems">
               <legend>Add-Ons</legend>
-              <form class="form-horizontal" id="addOnsForm" action="connections/connect.php" method="POST">
+              <form class="form-horizontal" id="addOnsForm">
                   <h6>Custom Add-On</h6>
                   <div class="row">
                     <div class="col-4">
@@ -140,7 +140,7 @@
                       <input id="newAddOnPrice" name="newAddOnPrice" type="text" placeholder="Price (THB)" class="form-control">
                     </div>
                     <div class="col-2">
-                      <button type="submit" name="add" id="add" class="btn btn-primary btn-block">Add</button>  <!--onclick="customAddOn()"-->                  
+                      <button type="button" name="add" id="add" class="btn btn-primary btn-block" onclick="saveAddOn()">Add</button>  <!--onclick="customAddOn()"-->                  
                     </div>
                   </div>
                 </form>
@@ -155,7 +155,7 @@
                       <th scope="col">Price (THB)</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="selectedBody">
                     <tr onclick="selection()">
                       <td>Body Kit</td>
                       <td>5000</td>

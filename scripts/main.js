@@ -157,22 +157,6 @@ function deleteInterest(divId) {
     card.parentNode.removeChild(card);
 }
 
-/** New Add-On
- * Adds new item to select menu for user to add custom options for selection
- * 
- * Referenced In:
- * - Add button in Div 3 - Add Ons "custom" form group in index.html
- */
-function customAddOn() {
-    var selectOptions = document.getElementById("AddOnOptions");
-    var optionNameValue = document.getElementById("newAddOnName").value;
-    if (optionNameValue != '') {
-        var newCustomOption = new Option(optionNameValue, optionNameValue, true, true);
-        newCustomOption.setAttribute('onclick', 'selection()');
-        selectOptions.options[selectOptions.options.length] = newCustomOption;
-    }  
-}
-
 /** Handle Checkbox Selections
  * Created a counter id like the interest cards above so each added item has a unique id.
  * Array created to ensure duplicates are not allowed when selecting items since add-ons can only be added once.
@@ -267,6 +251,39 @@ function uncheckItem(id) {
     trackSelections.splice(index, 1); 
     trackSelectionsMenu.splice(index, 1);
     item.parentNode.removeChild(item);
+}
+let newAddedNames = new Array();
+function saveAddOn() {
+    var myTable = document.getElementById('optionsTable');
+    var body = myTable.childNodes[3];
+    var customName = document.getElementById('newAddOnName').value;
+    var customCost = document.getElementById('newAddOnCost').value;
+    var customPrice = document.getElementById('newAddOnPrice').value;
+    if (!(customName == "" || customCost == "" || customPrice == "")) {
+        var newAddOnRow = document.createElement('tr');
+        var AddOnName = document.createElement('td');
+        AddOnName.innerHTML = customName;
+        var AddOnCost = document.createElement('td');
+        AddOnCost.innerHTML = customCost;
+        var AddOnPrice = document.createElement('td');
+        AddOnPrice.innerHTML = customPrice;
+        newAddOnRow.appendChild(AddOnName);
+        newAddOnRow.appendChild(AddOnCost);
+        newAddOnRow.appendChild(AddOnPrice);
+        if (!trackSelectionsMenu.includes(customName)) {
+            trackSelectionsMenu.push(customName);
+            body.appendChild(newAddOnRow);
+        } else {
+            alert('Already Added this Add-On');
+        }
+    } else {
+        alert('Fields cannot be empty');
+    }
+    
+
+    
+    
+    
 }
 
 

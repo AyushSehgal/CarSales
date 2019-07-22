@@ -18,10 +18,10 @@
         if(!mysqli_query($conn, $sql)) {
             echo 'Not Inserted';
         } else {
-            echo 'Inserted';
+            header("refresh:0.2; url=/carsales/index.html");    
         }
 
-        header("refresh:2; url=/carsales/index.html");
+        
     }
     
 ?>
