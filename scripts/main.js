@@ -1,3 +1,5 @@
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants";
+
 /** Calculate Total Car Price
  * retrieves input values from original price text input field 
  * and addOn input field and adds the results, presents them using
@@ -189,8 +191,6 @@ function selection() {
                 // rowSelected.style.backgroundColor = "#dee2e6";
                 // rowSelected.className += " selected";
                 trackSelections.push(rowSelected);
-                console.log(trackSelections);
-                console.log(trackSelections.length);
                 k++;
                 handleSelected(rowSelected, k);
             } else {
@@ -207,7 +207,7 @@ function selection() {
     }
 }
 
-
+var selectedBody;
 function handleSelected(row, k) {
     if (!trackSelectionsMenu.includes(row)) {
         trackSelectionsMenu.push(row);
@@ -218,7 +218,7 @@ function handleSelected(row, k) {
         selectedItemInput.setAttribute('class', 'btn btn-danger btn-sm');
         selectedItemInput.innerHTML = 'Remove';
 
-        var selectedBody = document.getElementById('bodySelected');
+        selectedBody = document.getElementById('bodySelected');
         
         //Creates table data for options 
         var selectedItemLabel = document.createElement('tr');
@@ -300,12 +300,21 @@ function saveAddOn() {
 }
 
 function getVehicleName() {
-    console.log("in the vehicle name function!");
     var vehicleName = document.getElementById('vehicleName').value;
     return vehicleName;
 }
 
+function salesInfo() {
+    var salesPerson = document.getElementById('salesPerson').value;
+    var salesPhone = document.getElementById('salesPhone').value;
+    var salesLine = document.getElementById('salesLine').value;
+    var salesInfo = new Array();
+    salesInfo.push(salesPerson, salesPhone, salesLine);
+    return salesInfo;
+}
+
 function populateTable() {
+    console.log("DOES THIS WORK");
     var cardss;
     var cardsYears;
     var cardsInterest;
@@ -323,6 +332,10 @@ function populateTable() {
         subBody.push(cardsInterest);
         body.push(subBody);
     }
+
+    for (let rows = 0; rows < trackSelections.length; rows++) {
+        console.log(trackSelection[rows]);
+    } 
     return body;
 }
 var a = 0;
@@ -333,6 +346,7 @@ function genPDF() {
     var carDownPercentage = getDownPayment();
     var carDownValue = calcDownVal();
     var carFinance = calcFinanceVal();
+    var carSalesInfo = salesInfo();
 
     var docDefinition = {
         content: [
@@ -373,7 +387,7 @@ function genPDF() {
             fontSize: 12,
         }
     };
-    var documentSales = pdfMake.createPdf(docDefinition).open();//'salesQuotation-' + a + '.pdf'
+    pdfMake.createPdf(docDefinition).open();//'salesQuotation-' + a + '.pdf'
     //var documentSalesObject = documentSales.getStream();
 
     

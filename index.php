@@ -14,7 +14,6 @@
         <script src="node_modules/pdfmake/build/vfs_fonts.js"></script>
         <script src="scripts/jQueryScript.js"></script>
         <script src="scripts/main.js"></script>
-        <!-- <script src="scripts/genPDF.js"></script> -->
         
     </head>
     <body>
@@ -216,20 +215,22 @@
             <legend>Sales Information</legend>
             <div class="form-group">
              <label for="salesPerson">Sales Person:</label>
-             <input id="salesPerson" type="text" oninput="getVehicleName()" class="form-control">
+             <input id="salesPerson" type="text" oninput="salesInfo()" class="form-control">
             </div>
             <div class="form-group">
              <label for="salesPhone">Sales Phone Number:</label>
-             <input id="salesPhone" type="text" oninput="getVehicleName()" class="form-control">
+             <input id="salesPhone" type="text" oninput="salesInfo()" class="form-control">
             </div>
             <div class="form-group">
              <label for="salesLine">LineID or Email:</label>
-             <input id="salesLine" type="text" oninput="getVehicleName()" class="form-control">
+             <input id="salesLine" type="text" oninput="salesInfo()" class="form-control">
             </div>
    
          <br>
+         
           <input type="submit" class="btn-block btn-success btn-lg" value="Submit" onclick="genPDF()">
           </div> 
+          
          <br>
          <br>  
          
