@@ -85,11 +85,8 @@ function calcFinanceVal() {
  * text fields and presents the result using outputInstallment output field.
  */
 var years;
-var trackYears = new Array();
 var interest;
-var trackInterest = new Array();
 var installmentValue;
-var trackInstallmentValue = new Array();
 function calcInstallments(digit) {
     var theForm2 = document.getElementById("interestCards" + digit);
     var outputInstallment = theForm2.elements["installment" + digit];
@@ -112,6 +109,7 @@ var j = 0;
 // Referenced In: - Add Calculation button in index.html
 function addInterest() {
     j++; //id will be incremented each time a new div object is created.
+    console.log(j);
     add(j);
 } 
 /** Add Card Helper Function 
@@ -307,6 +305,26 @@ function getVehicleName() {
     return vehicleName;
 }
 
+function populateTable() {
+    var cardss;
+    var cardsYears;
+    var cardsInterest;
+    var cardsInstallment;
+    var body = [];
+    body.push(["Months", "Installment Value (THB)", "Interest (%)"]);
+    for (let cardNo = 0; cardNo <= j; cardNo++) {
+        cardss = document.getElementById('card' + cardNo);
+        cardsYears = cardss.childNodes[1].childNodes[1].childNodes[1].childNodes[3].value;
+        cardsInterest = cardss.childNodes[1].childNodes[1].childNodes[3].childNodes[3].value;
+        cardsInstallment = cardss.childNodes[1].childNodes[1].childNodes[5].childNodes[3].value;
+        var subBody = [];
+        subBody.push(cardsYears * 12);
+        subBody.push(cardsInstallment);
+        subBody.push(cardsInterest);
+        body.push(subBody);
+    }
+    return body;
+}
 var a = 0;
 function genPDF() {
     a++;
@@ -315,12 +333,6 @@ function genPDF() {
     var carDownPercentage = getDownPayment();
     var carDownValue = calcDownVal();
     var carFinance = calcFinanceVal();
-    
-    for (let cardNo = 0; cardNo <= j; j++) {
-        var jimbo = document.getElementById('card' + cardNo);
-        console.log(jimbo);
-    }
-    
 
     var docDefinition = {
         content: [
@@ -342,15 +354,9 @@ function genPDF() {
             {
                table: {
                    headerRows: 1,
-
-                   body: [
-                       ['Months', 'Installment Value (THB)', 'Interest (%)'],
-                       [years * 12, installmentValue.toFixed(2), interest]
-                   ]
+                   body: populateTable()
                } 
-            }
-            
-            
+            }      
         ],
         styles: {
             header: {
