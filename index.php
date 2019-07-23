@@ -11,6 +11,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script src="node_modules/jsPDF-1.3.2/dist/jspdf.min.js"></script>
         <script src="node_modules/pdfmake/build/pdfmake.min.js"></script>
+        <script src="node_modules/pdfmake/build/vfs_fonts.js"></script>
         <script src="scripts/jQueryScript.js"></script>
         <script src="scripts/main.js"></script>
         <!-- <script src="scripts/genPDF.js"></script> -->
@@ -131,13 +132,14 @@
                   </form>
                 </div>    
               </div> 
-              <hr width=100%>
+              
               
           </div>
 
           
           <!-- Div 3 - Add Ons -->
           <div class="container" id="addOnItems">
+          <hr width=100%>
               <legend>Add-Ons</legend>
               <form class="form-horizontal" id="addOnsForm" method="POST">
                   <h6>Custom Add-On</h6>
@@ -207,7 +209,7 @@
            <legend>Vehicle</legend>
            <div class="form-group">
              <label for="vehicleName">Model Name:</label>
-             <input id="vehicleName" name="vehicleName" type="text">
+             <input id="vehicleName" name="vehicleName" type="text" oninput="getVehicleName()">
          </div>
          <br>
          

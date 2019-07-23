@@ -13,8 +13,12 @@ function getCarPriceTotal() {
     var outputPrice = form.elements["totalPrice"];
     var originalPrice = parseInt(form.elements["originalPrice"].value);
     var addOn = parseInt(form.elements["addOn"].value);
+    var totalPrice = 0;
 
-    var totalPrice = originalPrice + addOn;
+    if (Number.isNaN(addOn)) {
+        addOn = 0;    
+    }
+    totalPrice = originalPrice + addOn;
     
     outputPrice.value = totalPrice;
     return totalPrice;
@@ -80,14 +84,20 @@ function calcFinanceVal() {
  * Parses data from years and interest (convert to decimal) 
  * text fields and presents the result using outputInstallment output field.
  */
+var years;
+var trackYears = new Array();
+var interest;
+var trackInterest = new Array();
+var installmentValue;
+var trackInstallmentValue = new Array();
 function calcInstallments(digit) {
     var theForm2 = document.getElementById("interestCards" + digit);
     var outputInstallment = theForm2.elements["installment" + digit];
-    var years = parseInt(theForm2.elements["years" + digit].value);
-    var interest = parseInt(theForm2.elements["interest" + digit].value);
+    years = parseInt(theForm2.elements["years" + digit].value);
+    interest = parseInt(theForm2.elements["interest" + digit].value);
     var financialValue = calcFinanceVal();
 
-    var installmentValue = ((financialValue * (interest / 100) * years) + financialValue) / (years * 12);
+    installmentValue = ((financialValue * (interest / 100) * years) + financialValue) / (years * 12);
 
     outputInstallment.value = installmentValue.toFixed(2);
     return installmentValue;
@@ -201,8 +211,6 @@ function selection() {
 
 
 function handleSelected(row, k) {
-    console.log("Entered HandleSelected");
-    console.log(row.childNodes);
     if (!trackSelectionsMenu.includes(row)) {
         trackSelectionsMenu.push(row);
 
@@ -231,10 +239,7 @@ function handleSelected(row, k) {
         selectedItemLabel.setAttribute('id', "item" + k);
         selectedBody.appendChild(selectedItemLabel);
         var stringId = '\'' + selectedItemLabel.id + '\''; 
-        console.log(stringId);
         selectedItemInput.setAttribute('onclick', 'uncheckItem('+ stringId +')');
-        console.log(selectedBody);
-        console.log(selectedItemLabel);
         var selectedItems = document.getElementById('selectedItems');
         selectedItems.setAttribute('style', '');
     } 
@@ -247,7 +252,6 @@ function handleSelected(row, k) {
  * - When onclick value of newly created form-group for input options is changed (line 195)
 */
 function uncheckItem(id) {
-    console.log("Entered UncheckItem");
     var item = document.getElementById(id);
     var inputValue = item.childNodes[1];
     var index = trackSelections.indexOf(inputValue);
@@ -297,18 +301,74 @@ function saveAddOn() {
     
 }
 
+function getVehicleName() {
+    console.log("in the vehicle name function!");
+    var vehicleName = document.getElementById('vehicleName').value;
+    return vehicleName;
+}
+
 var a = 0;
 function genPDF() {
     a++;
+    var carName = getVehicleName();
     var carTotal = getCarPriceTotal();
     var carDownPercentage = getDownPayment();
     var carDownValue = calcDownVal();
     var carFinance = calcFinanceVal();
+    
+    for (let cardNo = 0; cardNo <= j; j++) {
+        var jimbo = document.getElementById('card' + cardNo);
+        console.log(jimbo);
+    }
+    
 
-    var docDefinition;
-    var documentSales = pdfmake.createPdf(docDefinition);
-    documentSales.write('Downloads/' + 'salesQuotation-' + a + '.pdf');
-    var documentSalesObject = documentSales.getStream();
+    var docDefinition = {
+        content: [
+            {
+                text: "Sales Quotation",
+                style: 'header'
+            },
+            ' ',
+            'Vehicle Model Name: ' + carName,
+
+            'Vehicle Total Price: ' + carTotal + 'THB',
+            ' ',
+            'Down Payment (percentage): ' + carDownPercentage + '%',
+            'Down Payment (value): ' + carDownValue + 'THB',
+            ' ',
+            'Financial Value of Vehicle: ' + carFinance + 'THB',
+            ' ',
+            'Installment Values',
+            {
+               table: {
+                   headerRows: 1,
+
+                   body: [
+                       ['Months', 'Installment Value (THB)', 'Interest (%)'],
+                       [years * 12, installmentValue.toFixed(2), interest]
+                   ]
+               } 
+            }
+            
+            
+        ],
+        styles: {
+            header: {
+                fontSize: 18,
+                bold: true,
+                alignment: 'center'
+            },
+            subheader: {
+                fontSize: 14,
+                bold: true
+            }
+        },
+        defaultStyle: {
+            fontSize: 12,
+        }
+    };
+    var documentSales = pdfMake.createPdf(docDefinition).open();//'salesQuotation-' + a + '.pdf'
+    //var documentSalesObject = documentSales.getStream();
 
     
 }
