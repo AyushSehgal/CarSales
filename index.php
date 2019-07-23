@@ -10,9 +10,10 @@
         <script src="scripts/jquery-3.4.1.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script src="node_modules/jsPDF-1.3.2/dist/jspdf.min.js"></script>
+        <script src="node_modules/pdfmake/build/pdfmake.min.js"></script>
         <script src="scripts/jQueryScript.js"></script>
         <script src="scripts/main.js"></script>
-        <script src="scripts/genPDF.js"></script>
+        <!-- <script src="scripts/genPDF.js"></script> -->
         
     </head>
     <body>
@@ -209,7 +210,9 @@
              <input id="vehicleName" name="vehicleName" type="text">
          </div>
          <br>
-         <input type="submit" class="btn-block btn-success btn-lg" value="Submit">
+         
+          <input type="submit" class="btn-block btn-success btn-lg" value="Submit" onclick="genPDF()">
+          
          <br>
          <br>  
          

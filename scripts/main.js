@@ -209,7 +209,7 @@ function handleSelected(row, k) {
         // Creates input checkbox element to be placed in table
         var selectedItemInput = document.createElement('button');
         selectedItemInput.setAttribute('type', 'button');
-        selectedItemInput.setAttribute('class', 'btn btn-danger btn-small');
+        selectedItemInput.setAttribute('class', 'btn btn-danger btn-sm');
         selectedItemInput.innerHTML = 'Remove';
 
         var selectedBody = document.getElementById('bodySelected');
@@ -296,6 +296,27 @@ function saveAddOn() {
     }
     
 }
+
+var a = 0;
+function genPDF() {
+    a++;
+    var carTotal = getCarPriceTotal();
+    var carDownPercentage = getDownPayment();
+    var carDownValue = calcDownVal();
+    var carFinance = calcFinanceVal();
+
+    var docDefinition;
+    var documentSales = pdfmake.createPdf(docDefinition);
+    documentSales.write('Downloads/' + 'salesQuotation-' + a + '.pdf');
+    var documentSalesObject = documentSales.getStream();
+
+    
+}
+
+
+//Disable Submit Button 
+
+
 
 
 
