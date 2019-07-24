@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <script src="scripts/jquery-3.4.1.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <script src="node_modules/jsPDF-1.3.2/dist/jspdf.min.js"></script>
         <script src="node_modules/pdfmake/build/pdfmake.min.js"></script>
         <script src="node_modules/pdfmake/build/vfs_fonts.js"></script>
         <script src="scripts/jQueryScript.js"></script>

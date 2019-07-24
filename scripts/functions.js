@@ -8,10 +8,11 @@
  * - originalPrice input field in index.html
  * - addOn input field in index.html
 */
+var originalPrice;
 function getCarPriceTotal() {
     var form = document.getElementById("carform"); 
     var outputPrice = form.elements["totalPrice"];
-    var originalPrice = parseInt(form.elements["originalPrice"].value);
+    originalPrice = parseInt(form.elements["originalPrice"].value);
     var addOn = parseInt(form.elements["addOn"].value);
     var totalPrice = 0;
 
@@ -291,9 +292,9 @@ function salesInfo() {
     salesInfo.push(salesPerson, salesPhone, salesLine);
     return salesInfo;
 }
-
+var installmentYearsTracker = new Array();
+var installmentInterestTracker = new Array();
 function populateInterestTable() {
-    console.log("DOES THIS WORK");
     var cardss;
     var cardsYears;
     var cardsInterest;
@@ -303,7 +304,9 @@ function populateInterestTable() {
     for (let cardNo = 0; cardNo <= j; cardNo++) {
         cardss = document.getElementById('card' + cardNo);
         cardsYears = cardss.childNodes[1].childNodes[1].childNodes[1].childNodes[3].value;
+        installmentYearsTracker.push(cardsYears);
         cardsInterest = cardss.childNodes[1].childNodes[1].childNodes[3].childNodes[3].value;
+        installmentInterestTracker.push(cardsInterest);
         cardsInstallment = cardss.childNodes[1].childNodes[1].childNodes[5].childNodes[3].value;
         var subBody = [];
         subBody.push(cardsYears * 12);
@@ -351,6 +354,27 @@ function populateAddOnTable(identifier) {
     return tableBody;
     
 }
+function validate(carName, carOriginal, carDownPayment, sales) {
+    if (!carName) {
+        alert('Please enter a valid name for the Model Name');
+    } 
+    if (Number.isNaN(carOriginal)) {
+        alert('Please enter a valid number for the Original Vehicle Price');
+    }
+    if (Number.isNaN(carDownPayment)) {
+        alert('Please enter a valid number for the \'other\' down payment');
+    } 
+    if (!sales[0]) {
+        alert('Please enter a valid name for the Sales Person');
+    }
+    if (!sales[1]) {
+        alert('Please enter a valid Sales Phone Number');
+    }
+    if (!sales[2]) {
+        alert('Please enter a valid number LineID/Email');
+    }
+
+}
 var a = 0;
 function genPDF() {
     a++;
@@ -361,6 +385,121 @@ function genPDF() {
     var carFinance = calcFinanceVal();
     var carSalesInfo = salesInfo();
 
+    validate(carName, originalPrice, carDownPercentage, carSalesInfo);
+
+    
+    if (trackSelections.length == 0) {
+        var docDefinitionSales = {
+            info: {
+                title: 'salesQuotation-' + a + '.pdf',
+                author: carSalesInfo[0]
+            },
+            content: [
+                {
+                    text: "Sales Quotation",
+                    style: 'header'
+                },
+                ' ',
+                'Vehicle Model Name: ' + carName,
+    
+                'Vehicle Total Price: ' + carTotal + 'THB',
+                ' ',
+                'Down Payment (percentage): ' + carDownPercentage + '%',
+                'Down Payment (value): ' + carDownValue + 'THB',
+                ' ',
+                'Financial Value of Vehicle: ' + carFinance + 'THB',
+                ' ',
+                'Installment Values',
+                {
+                    style: 'tableForm',
+                   table: { 
+                       widths: ['33%', '33%', '33%'],  
+                       headerRows: 1,
+                       body: populateInterestTable()
+                   } 
+                }
+            ],
+            styles: {
+                header: {
+                    fontSize: 18,
+                    bold: true,
+                    alignment: 'center'
+                },
+                subheader: {
+                    fontSize: 14,
+                    bold: true
+                },
+                tableHeader: {
+                    bold: true,
+                    fontSize: 13,
+                    color: 'black'
+                },
+                tableForm: {
+                    margin: [0, 5, 0, 15]
+                } 
+            },
+            defaultStyle: {
+                fontSize: 12,
+            }
+        };
+    
+        var docDefinitionCustomer = {
+            info: {
+                title: 'customerQuotation-' + a + '.pdf',
+                author: carSalesInfo[0]
+            },
+            content: [
+                {
+                    text: "Customer Quotation",
+                    style: 'header'
+                },
+                ' ',
+                'Sales Person: ' + carSalesInfo[0],
+                'Sales Phone Number: ' + carSalesInfo[1],
+                'Sales LineID/Email: ' + carSalesInfo[2],
+                'Vehicle Model Name: ' + carName,
+    
+                'Vehicle Total Price: ' + carTotal + 'THB',
+                ' ',
+                'Down Payment (percentage): ' + carDownPercentage + '%',
+                'Down Payment (value): ' + carDownValue + 'THB',
+                ' ',
+                'Financial Value of Vehicle: ' + carFinance + 'THB',
+                ' ',
+                'Installment Values',
+                {
+                    style: 'tableForm',
+                   table: { 
+                       widths: ['33%', '33%', '33%'],  
+                       headerRows: 1,
+                       body: populateInterestTable()
+                   } 
+                }     
+            ],
+            styles: {
+                header: {
+                    fontSize: 18,
+                    bold: true,
+                    alignment: 'center'
+                },
+                subheader: {
+                    fontSize: 14,
+                    bold: true
+                },
+                tableHeader: {
+                    bold: true,
+                    fontSize: 13,
+                    color: 'black'
+                },
+                tableForm: {
+                    margin: [0, 5, 0, 15]
+                } 
+            },
+            defaultStyle: {
+                fontSize: 12,
+            }
+        };
+    } else {
     var docDefinitionSales = {
         info: {
             title: 'salesQuotation-' + a + '.pdf',
@@ -491,7 +630,7 @@ function genPDF() {
             fontSize: 12,
         }
     };
-    
+    }   
     var documentSales = pdfMake.createPdf(docDefinitionSales);
     documentSales.getDataUrl((dataUrl) => {
         let targetLoc = document.getElementById('PDFs');
