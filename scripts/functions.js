@@ -176,7 +176,6 @@ function deleteInterest(divId) {
 var k = 0;
 let trackSelections = new Array();
 let trackSelectionsMenu = new Array(); 
-let updateDatabase = new Map();
 function selection() {
     var menu = document.getElementById("optionsTable");
     var cells = menu.getElementsByTagName('td');
