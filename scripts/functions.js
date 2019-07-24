@@ -161,6 +161,7 @@ function add(identification) {
  * - add(identification) helper function when delete button added to duplicate cards (line 132-133)
  */
 function deleteInterest(divId) {
+    j--;
     var card = document.getElementById(divId);
     card.parentNode.removeChild(card);
 }
@@ -321,7 +322,9 @@ function populateAddOnTable(identifier) {
     if (identifier == 's') {
         tableBody.push([{text: 'ของแถม (Item)', style: 'tableHeader'}, {text: 'มูลค่า (Cost) - THB', style: 'tableHeader'}, {text: 'ราคา (Price) - THB', style: 'tableHeader'}]);
         for (let l = 0; l < trackSelections.length; l++) {
-            rowAdded = iterator.next().value;
+            rowAdded = iterator.next().value;   
+            console.log('iiiii');
+            console.log(rowAdded.getElementsByTagName('td')[0]);
             rowName = rowAdded.childNodes[1].innerHTML;
             rowCost = rowAdded.childNodes[3].innerHTML;
             rowPrice = rowAdded.childNodes[5].innerHTML;
@@ -335,6 +338,7 @@ function populateAddOnTable(identifier) {
         tableBody.push([{text: 'ของแถม (Item)', style: 'tableHeader'}, {text: 'ราคา (Price) - THB', style: 'tableHeader'}]);
         for (let l = 0; l < trackSelections.length; l++) {
             rowAdded = iterator.next().value;
+            console.log(rowAdded.childNodes);
             rowName = rowAdded.childNodes[1].innerHTML;
             rowPrice = rowAdded.childNodes[5].innerHTML;
             var subTableBody = [];
