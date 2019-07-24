@@ -110,7 +110,6 @@ var j = 0;
 // Referenced In: - Add Calculation button in index.html
 function addInterest() {
     j++; //id will be incremented each time a new div object is created.
-    console.log(j);
     add(j);
 } 
 /** Add Card Helper Function 
@@ -149,7 +148,7 @@ function add(identification) {
 
     // Add delete button to non-primary buttons
     duplicate.innerHTML += '<div class=\"card-footer\"><button type=\"button\" class=\"btn btn-danger\" id=\"deleteButton\" onclick=\"deleteInterest('
-        + idString + ')\">Delete</button></div>';
+        + idString + ')\">ลบ (Delete)</button></div>';
 
     // Add duplicated card to Div 2 in index.html
     installmentCard.parentNode.appendChild(duplicate);      
@@ -205,7 +204,7 @@ function handleSelected(row, k) {
         var selectedItemInput = document.createElement('button');
         selectedItemInput.setAttribute('type', 'button');
         selectedItemInput.setAttribute('class', 'btn btn-danger btn-sm');
-        selectedItemInput.innerHTML = 'Remove';
+        selectedItemInput.innerHTML = 'ลบ (Remove)';
 
         selectedBody = document.getElementById('bodySelected');
 
@@ -263,7 +262,6 @@ function saveAddOn() {
         newAddOnRow.appendChild(AddOnPrice);
         newAddOnRow.appendChild(AddedButton);
         var stringId = '\'' + newAddOnRow.id + '\''; 
-        console.log(stringId);
         newAddOnRow.setAttribute('onclick', 'uncheckItem('+ stringId +')');
         if (!trackSelectionsMenu.includes(customName)) {
             trackSelectionsMenu.push(customName);
@@ -321,7 +319,7 @@ function populateAddOnTable(identifier) {
     var rowPrice;
     var iterator = trackSelections.values();
     if (identifier == 's') {
-        tableBody.push([{text: 'Item', style: 'tableHeader'}, {text: 'Cost (THB)', style: 'tableHeader'}, {text: 'Price (THB)', style: 'tableHeader'}]);
+        tableBody.push([{text: 'ของแถม (Item)', style: 'tableHeader'}, {text: 'มูลค่า (Cost) - THB', style: 'tableHeader'}, {text: 'ราคา (Price) - THB', style: 'tableHeader'}]);
         for (let l = 0; l < trackSelections.length; l++) {
             rowAdded = iterator.next().value;
             rowName = rowAdded.childNodes[1].innerHTML;
@@ -331,11 +329,10 @@ function populateAddOnTable(identifier) {
             subTableBody.push(rowName);
             subTableBody.push(rowCost);
             subTableBody.push(rowPrice);
-            console.log(subTableBody);
             tableBody.push(subTableBody);
         }
     } else if (identifier == 'c') {
-        tableBody.push([{text: 'Item', style: 'tableHeader'}, {text: 'Price (THB)', style: 'tableHeader'}]);
+        tableBody.push([{text: 'ของแถม (Item)', style: 'tableHeader'}, {text: 'ราคา (Price) - THB', style: 'tableHeader'}]);
         for (let l = 0; l < trackSelections.length; l++) {
             rowAdded = iterator.next().value;
             rowName = rowAdded.childNodes[1].innerHTML;
@@ -343,7 +340,6 @@ function populateAddOnTable(identifier) {
             var subTableBody = [];
             subTableBody.push(rowName);
             subTableBody.push(rowPrice);
-            console.log(subTableBody);
             tableBody.push(subTableBody);
         }
     }
@@ -397,16 +393,16 @@ function genPDF() {
                     style: 'header'
                 },
                 ' ',
-                'Vehicle Model Name: ' + carName,
+                'รถยนต์รุ่น (Vehicle Model Name): ' + carName,
     
-                'Vehicle Total Price: ' + carTotal + 'THB',
+                'ราคารดสุทธิ (Total Price): ' + carTotal + 'THB',
                 ' ',
-                'Down Payment (percentage): ' + carDownPercentage + '%',
-                'Down Payment (value): ' + carDownValue + 'THB',
+                'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + '%',
+                'เงินดาวน (Down Payment Value): ' + carDownValue + 'THB',
                 ' ',
-                'Financial Value of Vehicle: ' + carFinance + 'THB',
+                'ยอดจัดไฟแนนซ์ (Financial Value of Vehicle): ' + carFinance + 'THB',
                 ' ',
-                'Installment Values',
+                'ค่างวด (Installment Values)',
                 {
                     style: 'tableForm',
                    table: { 
@@ -436,7 +432,8 @@ function genPDF() {
                 } 
             },
             defaultStyle: {
-                fontSize: 12,
+                font: 'Sarabun',
+                fontSize: 12
             }
         };
     
@@ -451,19 +448,20 @@ function genPDF() {
                     style: 'header'
                 },
                 ' ',
-                'Sales Person: ' + carSalesInfo[0],
-                'Sales Phone Number: ' + carSalesInfo[1],
-                'Sales LineID/Email: ' + carSalesInfo[2],
-                'Vehicle Model Name: ' + carName,
+                'ผู้จัดการฝ่ายขาย (Sales Person): ' + carSalesInfo[0],
+                'เบอร์โทรศัพท์ (Sales Phone Number): ' + carSalesInfo[1],
+                'LineID/Email: ' + carSalesInfo[2],
     
-                'Vehicle Total Price: ' + carTotal + 'THB',
+                'รถยนต์รุ่น (Vehicle Model Name): ' + carName,
+    
+                'ราคารดสุทธิ (Total Price): ' + carTotal + 'THB',
                 ' ',
-                'Down Payment (percentage): ' + carDownPercentage + '%',
-                'Down Payment (value): ' + carDownValue + 'THB',
+                'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + '%',
+                'เงินดาวน (Down Payment Value): ' + carDownValue + 'THB',
                 ' ',
-                'Financial Value of Vehicle: ' + carFinance + 'THB',
+                'ยอดจัดไฟแนนซ์ (Financial Value of Vehicle): ' + carFinance + 'THB',
                 ' ',
-                'Installment Values',
+                'ค่างวด (Installment Values)',
                 {
                     style: 'tableForm',
                    table: { 
@@ -493,7 +491,8 @@ function genPDF() {
                 } 
             },
             defaultStyle: {
-                fontSize: 12,
+                font: 'Sarabun',
+                fontSize: 12
             }
         };
     } else {
@@ -508,16 +507,15 @@ function genPDF() {
                 style: 'header'
             },
             ' ',
-            'Vehicle Model Name: ' + carName,
-
-            'Vehicle Total Price: ' + carTotal + 'THB',
+            'รถยนต์รุ่น (Vehicle Model Name): ' + carName,
+    
+            'ราคารดสุทธิ (Total Price): ' + carTotal + 'THB',
             ' ',
-            'Down Payment (percentage): ' + carDownPercentage + '%',
-            'Down Payment (value): ' + carDownValue + 'THB',
-            ' ',
-            'Financial Value of Vehicle: ' + carFinance + 'THB',
-            ' ',
-            'Installment Values',
+            'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + '%',
+            'เงินดาวน (Down Payment Value): ' + carDownValue + 'THB',
+             ' ',
+            'ยอดจัดไฟแนนซ์ (Financial Value of Vehicle): ' + carFinance + 'THB',                ' ',
+            'ค่างวด (Installment Values)',
             {
                 style: 'tableForm',
                table: { 
@@ -557,7 +555,8 @@ function genPDF() {
             } 
         },
         defaultStyle: {
-            fontSize: 12,
+            font: 'Sarabun',
+            fontSize: 12
         }
     };
 
@@ -572,19 +571,20 @@ function genPDF() {
                 style: 'header'
             },
             ' ',
-            'Sales Person: ' + carSalesInfo[0],
-            'Sales Phone Number: ' + carSalesInfo[1],
-            'Sales LineID/Email: ' + carSalesInfo[2],
-            'Vehicle Model Name: ' + carName,
+            'ผู้จัดการฝ่ายขาย (Sales Person): ' + carSalesInfo[0],
+            'เบอร์โทรศัพท์ (Sales Phone Number): ' + carSalesInfo[1],
+            'LineID/Email: ' + carSalesInfo[2],
 
-            'Vehicle Total Price: ' + carTotal + 'THB',
-            ' ',
-            'Down Payment (percentage): ' + carDownPercentage + '%',
-            'Down Payment (value): ' + carDownValue + 'THB',
-            ' ',
-            'Financial Value of Vehicle: ' + carFinance + 'THB',
-            ' ',
-            'Installment Values',
+            'รถยนต์รุ่น (Vehicle Model Name): ' + carName,
+    
+                'ราคารดสุทธิ (Total Price): ' + carTotal + 'THB',
+                ' ',
+                'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + '%',
+                'เงินดาวน (Down Payment Value): ' + carDownValue + 'THB',
+                ' ',
+                'ยอดจัดไฟแนนซ์ (Financial Value of Vehicle): ' + carFinance + 'THB',
+                ' ',
+                'ค่างวด (Installment Values)',
             {
                 style: 'tableForm',
                table: { 
@@ -624,10 +624,27 @@ function genPDF() {
             } 
         },
         defaultStyle: {
-            fontSize: 12,
+            font: 'Sarabun',
+            fontSize: 12
         }
     };
-    }   
+    }
+    
+    pdfMake.fonts = {
+        Sarabun: {
+            normal: 'Sarabun-Regular.ttf',
+            bold: 'Sarabun-Bold.ttf',
+            italics: 'Sarabun-RegularItalic.ttf',
+            bolditalics: 'Sarabun-SemiBoldItalic.ttf'
+        },
+        Roboto: {
+            normal: 'Roboto-Regular.ttf',
+            bold: 'Roboto-Medium.ttf',
+            italics: 'Roboto-Italic.ttf',
+            bolditalics: 'Roboto-MediumItalic.ttf'
+        }
+    }
+
     var documentSales = pdfMake.createPdf(docDefinitionSales);
     documentSales.getDataUrl((dataUrl) => {
         let targetLoc = document.getElementById('PDFs');

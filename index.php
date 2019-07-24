@@ -27,36 +27,38 @@
           }
             
           ?>
-           <h1>Car Finances</h1>
+           
            <!-- Div 1 - Financial Value -->
            <div class="container">
+             <br>
+           <h1>ไฟแนนซ์ (Car Finances)</h1>
             <form class="form-horizontal mx-auto" id="carform">
                     <fieldset>
                     
                     <!-- Form Name -->
-                    <legend>Calculate Financial Value</legend>
+                    <legend>คำนวณยอดไฟแนนซ์ (Calculate Financial Value)</legend>
                     
                     <!-- Text input-->
                     <div class="form-group">
-                      <label for="originalPrice">Original Price of Vehicle</label>  
+                      <label for="originalPrice">ราคาจริง (Original Price of Vehicle)</label>  
                       <input id="originalPrice" oninput="getCarPriceTotal()" name="originalPrice" type="text" placeholder="" class="form-control input-md">  
                     </div>
                     
                     <!-- Text input-->
                     <div class="form-group">
-                      <label for="addOn">Add-On Price</label>  
+                      <label for="addOn">ราคาเพิ่มเติม (Add-On Price)</label>  
                       <input id="addOn" name="addOn" oninput="getCarPriceTotal()" type="text" placeholder="" class="form-control input-md">
                     </div>
                     
                     <!-- Text output-->
                     <div class="form-group">
-                      <label for="totalPrice"><strong>Total Price (THB):</strong></label>  
+                      <label for="totalPrice"><strong>ราคารดสุทธิ (Total Price) - THB:</strong></label>  
                       <output id="totalPrice" name="totalPrice" for="addOn originalPrice"></output>
                     </div>
                     
                     <!-- Multiple Radios -->
                     <div class="form-group">
-                      <label for="downPayment">Down Payment</label>   
+                      <label for="downPayment">เงินดาวน (Down Payment)</label>   
                       <div class=radio>
                         <label for="downPayment-0">
                           <input type="radio" name="downPayment" id="downPayment-0" value="15" onclick="calcDownVal(); calcFinanceVal()">
@@ -88,13 +90,13 @@
                   
                     <!-- Text output-->
                     <div class="form-group">
-                      <label for="downVal"><strong>Down Payment Value (THB): </strong></label>                        
+                      <label for="downVal"><strong>เงินดาวน (Down Payment Value) - THB: </strong></label>                        
                       <output id="downVal" name="downVal" for="originalPrice addOn downPayment"></output>
                     </div>
 
                     <!-- Text output-->
                     <div class="form-group">
-                      <label for="finVal"><strong>Finance Value (THB): </strong></label>                        
+                      <label for="finVal"><strong>ยอดจัดไฟแนนซ์ (Finance Value) - THB: </strong></label>                        
                       <output id="finVal" name="finVal" for="originalPrice addOn downPayment"></output>
                     </div>
                     <hr width=100%>
@@ -105,10 +107,10 @@
 
           <!-- Div 2 - Installment Value  -->
           <div class="container" id="cards">
-              <legend>Calculate Installment Value</legend>
+              <legend>หาค่างวด (Calculate Installment Value)</legend>
               <div class="card">
                   <div class="card-header">
-                    <button type="button" class="btn btn-primary" onclick="addInterest()">Add Calculation</button>   
+                    <button type="button" class="btn btn-primary" onclick="addInterest()">เพิ่มการคำนวณ (Add Calculation)</button>   
                   </div>
               </div>
              
@@ -116,15 +118,15 @@
                 <div class="card-body">
                   <form class="form-horizontal" id="interestCards0">
                   <div class="form-group">
-                    <label for="years0">Installment Years</label>  
+                    <label for="years0">จำนวนปีที่ผ่อน (Installment Years)</label>  
                     <input id="years0" name="years0" oninput="calcInstallments(this.id[5])" type="text" class="form-control">
                   </div>
                   <div class="form-group">
-                      <label for="interest0">Interest (%)</label>  
+                      <label for="interest0">ดอกเบี้ย (Interest) (%)</label>  
                       <input id="interest0" name="interest0" oninput="calcInstallments(this.id[8])" type="text" class="form-control">
                   </div>
                   <div class="form-group">
-                      <label for="installment0"><strong>Installment Value Per Month (THB): </strong></label>                        
+                      <label for="installment0"><strong>ค่างวดผ่อน (Installment Value Per Month) - THB: </strong></label>                        
                       <output id="installment0" name="installment0" for="years0 interest0"></output>
                   </div>
                   </form>
@@ -138,33 +140,33 @@
           <!-- Div 3 - Add Ons -->
           <div class="container" id="addOnItems">
           <hr width=100%>
-              <legend>Add-Ons</legend>
+              <legend>รายการของแถม (Add-Ons)</legend>
               <form class="form-horizontal" id="addOnsForm" method="POST">
-                  <h6>Custom Add-On</h6>
+                  <h6>กำหนดของแถม (Custom Add-On)</h6>
                   <div class="row">
                     <div class="col-4">
-                      <input id="newAddOnName" name="newAddOnName" type="text" placeholder="Name" class="form-control">
+                      <input id="newAddOnName" name="newAddOnName" type="text" placeholder="ของแถม (Item)" class="form-control">
                     </div>
                     <div class="col-3">
-                      <input id="newAddOnCost" name="newAddOnCost" type="text" placeholder="Cost (THB)" class="form-control">
+                      <input id="newAddOnCost" name="newAddOnCost" type="text" placeholder="มูลค่า (Cost) - THB" class="form-control">
                     </div>
                     <div class="col-3">
-                      <input id="newAddOnPrice" name="newAddOnPrice" type="text" placeholder="Price (THB)" class="form-control">
+                      <input id="newAddOnPrice" name="newAddOnPrice" type="text" placeholder="ราคา (Price) - THB" class="form-control">
                     </div>
                     <div class="col-2">
-                      <input type="submit" name="add" id="add" class="btn btn-block btn-success" value="Add" />
+                      <input type="submit" name="add" id="add" class="btn btn-block btn-success" value="เพิ่ม (Add)" />
                     </div>
                   </div>
                 </form>
                 <br>
-                <h6>Select Your Options</h6>
+                <h6>เลือกของแถม (Select Your Options)</h6>
                 <div class="card">
                 <table class="table" id="optionsTable">
                   <thead>
                     <tr>
-                      <th scope="col">Item</th>
-                      <th scope="col">Cost (THB)</th>
-                      <th scope="col">Price (THB)</th>
+                      <th scope="col">ของแถม (Item)</th>
+                      <th scope="col">มูลค่า (Cost) - THB</th>
+                      <th scope="col">ราคา (Price) - THB</th>
                     </tr>
                   </thead>
                   <tbody id="selectedBody">
@@ -183,7 +185,7 @@
                 </table>
               </div>
                 <br>
-                <h6>Selected Items</h6>
+                <h6>เลือกของแถมที่เลือกแลว (Selected Items)</h6>
                 <div id="selectedItems" class="custom-control custom-checkbox card" style="display:none">
                   <table id="selectedTable">
                     <thead>
@@ -204,20 +206,20 @@
         
          <!-- Div 4 - Vehicle Name -->
         <div class="container">
-           <legend>Vehicle</legend>
+           <legend>รถยนต์ (Vehicle)</legend>
            <div class="form-group">
-             <label for="vehicleName">Model Name:</label>
+             <label for="vehicleName">รุ่น (Model Name):</label>
              <input id="vehicleName" name="vehicleName" type="text" oninput="getVehicleName()" class="form-control">
             </div>
             <hr width=100%>
         <!-- Div 5 - Sales Information -->
-            <legend>Sales Information</legend>
+            <legend>ข้อมูลการขาย (Sales Information)</legend>
             <div class="form-group">
-             <label for="salesPerson">Sales Person:</label>
+             <label for="salesPerson">ผู้จัดการฝ่ายขาย (Sales Person):</label>
              <input id="salesPerson" type="text" oninput="salesInfo()" class="form-control">
             </div>
             <div class="form-group">
-             <label for="salesPhone">Sales Phone Number:</label>
+             <label for="salesPhone">เบอร์โทรศัพท์ (Sales Phone Number):</label>
              <input id="salesPhone" type="text" oninput="salesInfo()" class="form-control">
             </div>
             <div class="form-group">
@@ -227,7 +229,7 @@
    
          <br>
          
-          <input type="submit" onclick="genPDF()" class="btn-block btn-success btn-lg" value="Submit">
+          <input type="submit" onclick="genPDF()" class="btn-block btn-success btn-lg" value="ตกลง (Submit)">
           </div>  
 
           <div class="container" id="PDFs">
