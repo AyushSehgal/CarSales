@@ -13,7 +13,7 @@
         <script src="node_modules/pdfmake/build/pdfmake.min.js"></script>
         <script src="node_modules/pdfmake/build/vfs_fonts.js"></script>
         <script src="scripts/jQueryScript.js"></script>
-        <script src="scripts/main.js"></script>
+        <script src="scripts/functions.js"></script>
         
     </head>
     <body>
@@ -228,8 +228,8 @@
    
          <br>
          
-          <input type="submit" class="btn-block btn-success btn-lg" value="Submit" onclick="genPDF()">
-          </div> 
+          <input type="submit" onclick="genPDF()" class="btn-block btn-success btn-lg" value="Submit">
+          </div>  
           
          <br>
          <br>  

@@ -1,5 +1,3 @@
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants";
-
 /** Calculate Total Car Price
  * retrieves input values from original price text input field 
  * and addOn input field and adds the results, presents them using
@@ -188,21 +186,12 @@ function selection() {
             var rowId = this.parentNode.rowIndex;
             var rowSelected = menu.getElementsByTagName('tr')[rowId]; 
             if (!trackSelections.includes(rowSelected)) {
-                // rowSelected.style.backgroundColor = "#dee2e6";
-                // rowSelected.className += " selected";
                 trackSelections.push(rowSelected);
                 k++;
                 handleSelected(rowSelected, k);
             } else {
                 alert('Already Added this Add-On');
-            }  //else {
-        //         rowSelected.style.backgroundColor = "";
-        //         rowSelected.classList.remove('selected');
-        //         var ind = trackSelections.indexOf(rowSelected);
-        //         trackSelections.splice(ind, 1) ;
-        //         console.log(trackSelections);
-        //         console.log(trackSelections.length);
-        //    }
+            }  
         }
     }
 }
@@ -387,7 +376,7 @@ function genPDF() {
             fontSize: 12,
         }
     };
-    pdfMake.createPdf(docDefinition).open();//'salesQuotation-' + a + '.pdf'
+    var documentSales = pdfMake.createPdf(docDefinition).open();//'salesQuotation-' + a + '.pdf'
     //var documentSalesObject = documentSales.getStream();
 
     
