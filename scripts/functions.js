@@ -502,11 +502,11 @@ function genPDF() {
         }
     };
     
-    
-    
     var documentSales = pdfMake.createPdf(docDefinitionSales);
     documentSales.getDataUrl((dataUrl) => {
         let targetLoc = document.getElementById('PDFs');
+        let title = document.createElement('legend');
+        title.innerHTML = 'Quotation PDFs';
         let targetLocRow = document.createElement('div');
         targetLocRow.setAttribute('class', 'row');
         targetLocRow.setAttribute('id', 'grid');
@@ -519,6 +519,7 @@ function genPDF() {
         targetLocCol.appendChild(frame);
         targetLocRow.appendChild(targetLocCol);
         targetLocCol.appendChild(frame);
+        targetLoc.appendChild(title);
         targetLoc.appendChild(targetLocRow);
     });
 

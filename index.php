@@ -153,7 +153,7 @@
                       <input id="newAddOnPrice" name="newAddOnPrice" type="text" placeholder="Price (THB)" class="form-control">
                     </div>
                     <div class="col-2">
-                      <button type="button" name="add" id="add" class="btn btn-primary btn-block" onclick="saveAddOn()">Add</button>  <!--onclick="customAddOn()"-->                  
+                      <input type="submit" name="add" id="add" class="btn btn-block btn-success" value="Add" onclick="saveAddOn()" />
                     </div>
                   </div>
                 </form>
@@ -234,10 +234,6 @@
           <div class="container" id="PDFs">
           <br>
           <hr width='100%'>
-          <br>
-
-
-
 
           </div>
           
