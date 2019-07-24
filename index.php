@@ -41,13 +41,13 @@
                     <!-- Text input-->
                     <div class="form-group">
                       <label for="originalPrice">ราคาจริง (Original Price of Vehicle)</label>  
-                      <input id="originalPrice" oninput="getCarPriceTotal()" name="originalPrice" type="text" placeholder="" class="form-control input-md">  
+                      <input id="originalPrice" oninput="getCarPriceTotal(); calcDownVal(); calcFinanceVal()" name="originalPrice" type="text" placeholder="" class="form-control input-md">  
                     </div>
                     
                     <!-- Text input-->
                     <div class="form-group">
                       <label for="addOn">ราคาเพิ่มเติม (Add-On Price)</label>  
-                      <input id="addOn" name="addOn" oninput="getCarPriceTotal()" type="text" placeholder="" class="form-control input-md">
+                      <input id="addOn" name="addOn" oninput="getCarPriceTotal(); calcDownVal(); calcFinanceVal()" type="text" placeholder="" class="form-control input-md">
                     </div>
                     
                     <!-- Text output-->
