@@ -207,24 +207,15 @@ function handleSelected(row, k) {
         selectedItemInput.innerHTML = 'Remove';
 
         selectedBody = document.getElementById('bodySelected');
-        console.log(row.childNodes);
+
         //Creates table data for options 
-        var selectedItemLabel = document.createElement('tr');
-        var selectedItemLabelName = document.createElement('td');
-        selectedItemLabelName.innerHTML = row.childNodes[1].innerHTML;
-        var selectedItemLabelCost = document.createElement('td');
-        selectedItemLabelCost.innerHTML = row.childNodes[3].innerHTML;
-        var selectedItemLabelPrice = document.createElement('td');
-        selectedItemLabelPrice.innerHTML = row.childNodes[5].innerHTML;
+        var duplicateRow = row.cloneNode(true);
         selectedItemInputCell = document.createElement('td');
         selectedItemInputCell.appendChild(selectedItemInput);
-        selectedItemLabel.appendChild(selectedItemLabelName);
-        selectedItemLabel.appendChild(selectedItemLabelCost);
-        selectedItemLabel.appendChild(selectedItemLabelPrice);
-        selectedItemLabel.appendChild(selectedItemInputCell);
-        selectedItemLabel.setAttribute('id', "item" + k);
-        selectedBody.appendChild(selectedItemLabel);
-        var stringId = '\'' + selectedItemLabel.id + '\''; 
+        duplicateRow.setAttribute('id', 'item' + k);
+        duplicateRow.appendChild(selectedItemInputCell);
+        selectedBody.appendChild(duplicateRow);
+        var stringId = '\'' + duplicateRow.id + '\'';
         selectedItemInput.setAttribute('onclick', 'uncheckItem('+ stringId +')');
         var selectedItems = document.getElementById('selectedItems');
         selectedItems.setAttribute('style', '');
