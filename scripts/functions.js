@@ -372,6 +372,10 @@ function genPDF() {
     var carSalesInfo = salesInfo();
 
     var docDefinitionSales = {
+        info: {
+            title: 'salesQuotation-' + a + '.pdf',
+            author: carSalesInfo[0]
+        },
         content: [
             {
                 text: "Sales Quotation",
@@ -432,6 +436,10 @@ function genPDF() {
     };
 
     var docDefinitionCustomer = {
+        info: {
+            title: 'customerQuotation-' + a + '.pdf',
+            author: carSalesInfo[0]
+        },
         content: [
             {
                 text: "Customer Quotation",
@@ -494,8 +502,7 @@ function genPDF() {
         }
     };
     
-    //var documentSales = pdfMake.createPdf(docDefinitionSales).open();//'salesQuotation-' + a + '.pdf'
-    //var documentCustomer = pdfMake.createPdf(docDefinitionCustomer).open();//'customerQuotation-' + a + '.pdf'
+    
     
     var documentSales = pdfMake.createPdf(docDefinitionSales);
     documentSales.getDataUrl((dataUrl) => {
