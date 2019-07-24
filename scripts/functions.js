@@ -207,7 +207,7 @@ function handleSelected(row, k) {
         selectedItemInput.innerHTML = 'Remove';
 
         selectedBody = document.getElementById('bodySelected');
-        
+        console.log(row.childNodes);
         //Creates table data for options 
         var selectedItemLabel = document.createElement('tr');
         var selectedItemLabelName = document.createElement('td');

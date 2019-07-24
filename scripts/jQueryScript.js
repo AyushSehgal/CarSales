@@ -20,11 +20,15 @@ $(document).ready(function(){
               html += '<td>'+data.item+'</td>';
               html += '<td>'+data.cost+'</td>';
               html += '<td>'+data.price+'</td>';
+              html += '</tr>'
               $('#optionsTable').prepend(html);
               $('#addOnsForm')[0].reset();
             }
           }
         })
     });
+    $("#optionsTable tr").click(function() {
+      //alert("hello");
+   });
 
 });
