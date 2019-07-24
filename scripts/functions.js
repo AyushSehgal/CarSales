@@ -302,14 +302,14 @@ function salesInfo() {
     return salesInfo;
 }
 
-function populateTable() {
+function populateInterestTable() {
     console.log("DOES THIS WORK");
     var cardss;
     var cardsYears;
     var cardsInterest;
     var cardsInstallment;
     var body = [];
-    body.push(["Months", "Installment Value (THB)", "Interest (%)"]);
+    body.push([{text: 'Months', style: 'tableHeader'}, {text: 'Installment Value (THB)', style: 'tableHeader'}, {text: 'Interest (%)', style: 'tableHeader'}]);
     for (let cardNo = 0; cardNo <= j; cardNo++) {
         cardss = document.getElementById('card' + cardNo);
         cardsYears = cardss.childNodes[1].childNodes[1].childNodes[1].childNodes[3].value;
@@ -321,11 +321,45 @@ function populateTable() {
         subBody.push(cardsInterest);
         body.push(subBody);
     }
-
-    for (let rows = 0; rows < trackSelections.length; rows++) {
-        console.log(trackSelection[rows]);
-    } 
     return body;
+}
+function populateAddOnTable(identifier) {
+    var tableBody = [];
+    var rowAdded;
+    var rowName;
+    var rowCost;
+    var rowPrice;
+    var iterator = trackSelections.values();
+    if (identifier == 's') {
+        tableBody.push([{text: 'Item', style: 'tableHeader'}, {text: 'Cost (THB)', style: 'tableHeader'}, {text: 'Price (THB)', style: 'tableHeader'}]);
+        for (let l = 0; l < trackSelections.length; l++) {
+            rowAdded = iterator.next().value;
+            rowName = rowAdded.childNodes[1].innerHTML;
+            rowCost = rowAdded.childNodes[3].innerHTML;
+            rowPrice = rowAdded.childNodes[5].innerHTML;
+            var subTableBody = [];
+            subTableBody.push(rowName);
+            subTableBody.push(rowCost);
+            subTableBody.push(rowPrice);
+            console.log(subTableBody);
+            tableBody.push(subTableBody);
+        }
+    } else if (identifier == 'c') {
+        tableBody.push([{text: 'Item', style: 'tableHeader'}, {text: 'Price (THB)', style: 'tableHeader'}]);
+        for (let l = 0; l < trackSelections.length; l++) {
+            rowAdded = iterator.next().value;
+            rowName = rowAdded.childNodes[1].innerHTML;
+            rowPrice = rowAdded.childNodes[5].innerHTML;
+            var subTableBody = [];
+            subTableBody.push(rowName);
+            subTableBody.push(rowPrice);
+            console.log(subTableBody);
+            tableBody.push(subTableBody);
+        }
+    }
+    
+    return tableBody;
+    
 }
 var a = 0;
 function genPDF() {
@@ -337,7 +371,7 @@ function genPDF() {
     var carFinance = calcFinanceVal();
     var carSalesInfo = salesInfo();
 
-    var docDefinition = {
+    var docDefinitionSales = {
         content: [
             {
                 text: "Sales Quotation",
@@ -355,11 +389,23 @@ function genPDF() {
             ' ',
             'Installment Values',
             {
-               table: {
+                style: 'tableForm',
+               table: { 
+                   widths: ['33%', '33%', '33%'],  
                    headerRows: 1,
-                   body: populateTable()
+                   body: populateInterestTable()
                } 
-            }      
+            },
+            
+            'Add-Ons',
+            {
+                style: 'tableForm',
+                table: {
+                    widths: ['33%', '33%', '33%'],
+                    headerRows: 1,
+                    body: populateAddOnTable('s')
+                }
+            }     
         ],
         styles: {
             header: {
@@ -370,13 +416,87 @@ function genPDF() {
             subheader: {
                 fontSize: 14,
                 bold: true
-            }
+            },
+            tableHeader: {
+                bold: true,
+                fontSize: 13,
+                color: 'black'
+            },
+            tableForm: {
+                margin: [0, 5, 0, 15]
+            } 
         },
         defaultStyle: {
             fontSize: 12,
         }
     };
-    var documentSales = pdfMake.createPdf(docDefinition).open();//'salesQuotation-' + a + '.pdf'
+
+    var docDefinitionCustomer = {
+        content: [
+            {
+                text: "Customer Quotation",
+                style: 'header'
+            },
+            ' ',
+            'Sales Person: ' + carSalesInfo[0],
+            'Sales Phone Number: ' + carSalesInfo[1],
+            'Sales LineID/Email: ' + carSalesInfo[2],
+            'Vehicle Model Name: ' + carName,
+
+            'Vehicle Total Price: ' + carTotal + 'THB',
+            ' ',
+            'Down Payment (percentage): ' + carDownPercentage + '%',
+            'Down Payment (value): ' + carDownValue + 'THB',
+            ' ',
+            'Financial Value of Vehicle: ' + carFinance + 'THB',
+            ' ',
+            'Installment Values',
+            {
+                style: 'tableForm',
+               table: { 
+                   widths: ['33%', '33%', '33%'],  
+                   headerRows: 1,
+                   body: populateInterestTable()
+               } 
+            },
+            
+            'Add-Ons',
+            {
+                style: 'tableForm',
+                table: {
+                    widths: ['50%','50%'],
+                    headerRows: 1,
+                    body: populateAddOnTable('c')
+                }
+            }     
+        ],
+        styles: {
+            header: {
+                fontSize: 18,
+                bold: true,
+                alignment: 'center'
+            },
+            subheader: {
+                fontSize: 14,
+                bold: true
+            },
+            tableHeader: {
+                bold: true,
+                fontSize: 13,
+                color: 'black'
+            },
+            tableForm: {
+                margin: [0, 5, 0, 15]
+            } 
+        },
+        defaultStyle: {
+            fontSize: 12,
+        }
+    };
+    
+    //var documentSales = pdfMake.createPdf(docDefinitionSales).open();//'salesQuotation-' + a + '.pdf'
+    var documentCustomer = pdfMake.createPdf(docDefinitionCustomer).open();//'customerQuotation-' + a + '.pdf'
+    
     //var documentSalesObject = documentSales.getStream();
 
     
