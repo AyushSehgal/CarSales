@@ -230,9 +230,19 @@
          
           <input type="submit" onclick="genPDF()" class="btn-block btn-success btn-lg" value="Submit">
           </div>  
+
+          <div class="container" id="PDFs">
+          <br>
+          <hr width='100%'>
+          <br>
+
+
+
+
+          </div>
           
          <br>
-         <br>  
+         <br>
          
         
     </body>

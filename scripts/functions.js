@@ -495,15 +495,42 @@ function genPDF() {
     };
     
     //var documentSales = pdfMake.createPdf(docDefinitionSales).open();//'salesQuotation-' + a + '.pdf'
-    var documentCustomer = pdfMake.createPdf(docDefinitionCustomer).open();//'customerQuotation-' + a + '.pdf'
+    //var documentCustomer = pdfMake.createPdf(docDefinitionCustomer).open();//'customerQuotation-' + a + '.pdf'
     
-    //var documentSalesObject = documentSales.getStream();
+    var documentSales = pdfMake.createPdf(docDefinitionSales);
+    documentSales.getDataUrl((dataUrl) => {
+        let targetLoc = document.getElementById('PDFs');
+        let targetLocRow = document.createElement('div');
+        targetLocRow.setAttribute('class', 'row');
+        targetLocRow.setAttribute('id', 'grid');
+        let targetLocCol = document.createElement('div');
+        targetLocCol.setAttribute('class', 'col');
+        let frame = document.createElement('iframe');
+        frame.setAttribute('height', '750px');
+        frame.setAttribute('width', '100%');
+        frame.src = dataUrl;
+        targetLocCol.appendChild(frame);
+        targetLocRow.appendChild(targetLocCol);
+        targetLocCol.appendChild(frame);
+        targetLoc.appendChild(targetLocRow);
+    });
+
+    var documentCustomer = pdfMake.createPdf(docDefinitionCustomer);
+    documentCustomer.getDataUrl((dataUrl) => {
+        let grid = document.getElementById('grid');
+        let targetLocCol1 = document.createElement('div');
+        targetLocCol1.setAttribute('class', 'col');
+        let frames = document.createElement('iframe');
+        frames.setAttribute('height', '750px');
+        frames.setAttribute('width', '100%');
+        frames.src = dataUrl;
+        targetLocCol1.appendChild(frames);
+        grid.appendChild(targetLocCol1);
+    });
 
     
 }
 
-
-//Disable Submit Button 
 
 
 
