@@ -292,8 +292,7 @@ function salesInfo() {
     salesInfo.push(salesPerson, salesPhone, salesLine);
     return salesInfo;
 }
-var installmentYearsTracker = new Array();
-var installmentInterestTracker = new Array();
+
 function populateInterestTable() {
     var cardss;
     var cardsYears;
@@ -304,9 +303,7 @@ function populateInterestTable() {
     for (let cardNo = 0; cardNo <= j; cardNo++) {
         cardss = document.getElementById('card' + cardNo);
         cardsYears = cardss.childNodes[1].childNodes[1].childNodes[1].childNodes[3].value;
-        installmentYearsTracker.push(cardsYears);
         cardsInterest = cardss.childNodes[1].childNodes[1].childNodes[3].childNodes[3].value;
-        installmentInterestTracker.push(cardsInterest);
         cardsInstallment = cardss.childNodes[1].childNodes[1].childNodes[5].childNodes[3].value;
         var subBody = [];
         subBody.push(cardsYears * 12);
