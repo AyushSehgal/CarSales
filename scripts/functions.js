@@ -323,11 +323,9 @@ function populateAddOnTable(identifier) {
         tableBody.push([{text: 'ของแถม (Item)', style: 'tableHeader'}, {text: 'มูลค่า (Cost) - THB', style: 'tableHeader'}, {text: 'ราคา (Price) - THB', style: 'tableHeader'}]);
         for (let l = 0; l < trackSelections.length; l++) {
             rowAdded = iterator.next().value;   
-            console.log('iiiii');
-            console.log(rowAdded.getElementsByTagName('td')[0]);
-            rowName = rowAdded.childNodes[1].innerHTML;
-            rowCost = rowAdded.childNodes[3].innerHTML;
-            rowPrice = rowAdded.childNodes[5].innerHTML;
+            rowName = rowAdded.getElementsByTagName('td')[0].innerHTML;
+            rowCost = rowAdded.getElementsByTagName('td')[1].innerHTML;
+            rowPrice = rowAdded.getElementsByTagName('td')[2].innerHTML;
             var subTableBody = [];
             subTableBody.push(rowName);
             subTableBody.push(rowCost);
@@ -338,9 +336,8 @@ function populateAddOnTable(identifier) {
         tableBody.push([{text: 'ของแถม (Item)', style: 'tableHeader'}, {text: 'ราคา (Price) - THB', style: 'tableHeader'}]);
         for (let l = 0; l < trackSelections.length; l++) {
             rowAdded = iterator.next().value;
-            console.log(rowAdded.childNodes);
-            rowName = rowAdded.childNodes[1].innerHTML;
-            rowPrice = rowAdded.childNodes[5].innerHTML;
+            rowName = rowAdded.getElementsByTagName('td')[0].innerHTML;
+            rowPrice = rowAdded.getElementsByTagName('td')[2].innerHTML;
             var subTableBody = [];
             subTableBody.push(rowName);
             subTableBody.push(rowPrice);
