@@ -190,7 +190,7 @@ function selection() {
                 k++;
                 handleSelected(rowSelected, k);
             } else {
-                alert('Already Added this Add-On');
+                alert('เพิ่มรายการนี้แล้ว (Already Added this Add-On)');
             }  
         }
     }
@@ -270,10 +270,10 @@ function saveAddOn() {
             var selectedItems = document.getElementById('selectedItems');
             selectedItems.setAttribute('style', '');
         } else {
-            alert('Already Added this Add-On');
+            alert('เพิ่มรายการนี้แล้ว (Already Added this Add-On)');
         }
     } else {
-        alert('Fields cannot be empty');
+        alert('กรุณากรอกในช่อง (Fields cannot be empty)');
     }
     
 }
@@ -350,22 +350,22 @@ function populateAddOnTable(identifier) {
 }
 function validate(carName, carOriginal, carDownPayment, sales) {
     if (!carName) {
-        alert('Please enter a valid name for the Model Name');
+        alert('กรุณาใส่ชื่อที่ถูกต้องสำหรับรุ่น (Please enter a valid name for the Model Name)');
     } 
     if (Number.isNaN(carOriginal)) {
-        alert('Please enter a valid number for the Original Vehicle Price');
+        alert('กรุณาใส่ราคาจริงที่ถูกต้อง (Please enter a valid number for the Original Vehicle Price)');
     }
     if (Number.isNaN(carDownPayment)) {
-        alert('Please enter a valid number for the \'other\' down payment');
+        alert('กรุณาใส่เงินดาวนเปอร์เซ็นต์ที่ถูกต้อง (Please enter a valid number for the \'other\' down payment)');
     } 
     if (!sales[0]) {
-        alert('Please enter a valid name for the Sales Person');
+        alert('กรุณาใส่ชื่อที่ถูกต้องสำหรับผู้จัดการฝ่ายขาย (Please enter a valid name for the Sales Person)');
     }
     if (!sales[1]) {
-        alert('Please enter a valid Sales Phone Number');
+        alert('กรุณาใส่เบอร์โทรศัพท์ของผู้จัดการฝ่ายขายที่ถูกต้อง (Please enter a valid Sales Phone Number)');
     }
     if (!sales[2]) {
-        alert('Please enter a valid number LineID/Email');
+        alert('กรุณาใส่ LineID/Emailที่ถูกต้อง (Please enter a valid number LineID/Email)');
     }
 
 }
