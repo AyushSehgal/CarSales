@@ -119,15 +119,18 @@
                   <form class="form-horizontal" id="interestCards0">
                   <div class="form-group">
                     <label for="years0">จำนวนปีที่ผ่อน (Installment Years)</label>  
-                    <input id="years0" name="years0" oninput="calcInstallments(this.id[5])" type="text" class="form-control">
+                    <input id="years0" name="years0" type="text" class="form-control">
                   </div>
                   <div class="form-group">
                       <label for="interest0">ดอกเบี้ย (Interest) (%)</label>  
-                      <input id="interest0" name="interest0" oninput="calcInstallments(this.id[8])" type="text" class="form-control">
+                      <input id="interest0" name="interest0" type="text" class="form-control">
                   </div>
                   <div class="form-group">
                       <label for="installment0"><strong>ค่างวดผ่อน (Installment Value Per Month) - THB: </strong></label>                        
                       <output id="installment0" name="installment0" for="years0 interest0"></output>
+                  </div>
+                  <div class="form-group">
+                      <input type="button" class="btn btn-primary" id="calculate0" onclick="calcInstallments(this.id[9])" value="Calculate">
                   </div>
                   </form>
                 </div>    

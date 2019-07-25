@@ -21,7 +21,7 @@ function getCarPriceTotal() {
     }
     totalPrice = originalPrice + addOn;
     
-    outputPrice.value = totalPrice;
+    outputPrice.value = totalPrice;    
     return totalPrice;
 }
 /** Down Payment Radios 
@@ -145,6 +145,12 @@ function add(identification) {
     outputField.setAttribute('name', 'installment' + identification);
     outputField.setAttribute('for', 'years' + identification + ' interest' + identification);
     outputField.innerHTML = '';
+
+    //Updates id and name of calculate button 
+    var calcButton = duplicate.childNodes[1].childNodes[1].childNodes[7].childNodes[1];
+    calcButton.id = "calculate" + identification;
+    calcButton.setAttribute('name', 'calculate' + identification);
+    console.log(calcButton);
 
     // Add delete button to non-primary buttons
     duplicate.innerHTML += '<div class=\"card-footer\"><button type=\"button\" class=\"btn btn-danger\" id=\"deleteButton\" onclick=\"deleteInterest('
