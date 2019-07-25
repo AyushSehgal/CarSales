@@ -21,7 +21,7 @@ function getCarPriceTotal() {
     }
     totalPrice = originalPrice + addOn;
     
-    outputPrice.value = totalPrice;    
+    outputPrice.value = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");    
     return totalPrice;
 }
 /** Down Payment Radios 
@@ -68,7 +68,7 @@ function calcDownVal() {
     
     var downVal = total * (down / 100);
 
-    outputDownVal.value = downVal.toFixed(2);
+    outputDownVal.value = downVal.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return downVal; 
 }
 function calcFinanceVal() {
@@ -78,7 +78,7 @@ function calcFinanceVal() {
     var downpayment = calcDownVal();
 
     var finVal = total - downpayment;
-    outputFinanceVal.value = finVal.toFixed(2);
+    outputFinanceVal.value = finVal.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return finVal;
 }
 /** Calculate Installment Values
@@ -97,7 +97,7 @@ function calcInstallments(digit) {
 
     installmentValue = ((financialValue * (interest / 100) * years) + financialValue) / (years * 12);
 
-    outputInstallment.value = installmentValue.toFixed(2);
+    outputInstallment.value = installmentValue.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return installmentValue;
 }
 
@@ -150,7 +150,6 @@ function add(identification) {
     var calcButton = duplicate.childNodes[1].childNodes[1].childNodes[7].childNodes[1];
     calcButton.id = "calculate" + identification;
     calcButton.setAttribute('name', 'calculate' + identification);
-    console.log(calcButton);
 
     // Add delete button to non-primary buttons
     duplicate.innerHTML += '<div class=\"card-footer\"><button type=\"button\" class=\"btn btn-danger\" id=\"deleteButton\" onclick=\"deleteInterest('
@@ -339,14 +338,12 @@ function populateAddOnTable(identifier) {
             tableBody.push(subTableBody);
         }
     } else if (identifier == 'c') {
-        tableBody.push([{text: 'ของแถม (Item)', style: 'tableHeader'}, {text: 'ราคา (Price) - THB', style: 'tableHeader'}]);
+        tableBody.push([{text: 'ของแถม (Item)', style: 'tableHeader'}]);
         for (let l = 0; l < trackSelections.length; l++) {
             rowAdded = iterator.next().value;
             rowName = rowAdded.getElementsByTagName('td')[0].innerHTML;
-            rowPrice = rowAdded.getElementsByTagName('td')[2].innerHTML;
             var subTableBody = [];
             subTableBody.push(rowName);
-            subTableBody.push(rowPrice);
             tableBody.push(subTableBody);
         }
     }
@@ -605,7 +602,7 @@ function genPDF() {
             {
                 style: 'tableForm',
                 table: {
-                    widths: ['50%','50%'],
+                    widths: ['100%'],
                     headerRows: 1,
                     body: populateAddOnTable('c')
                 }
@@ -663,7 +660,7 @@ function genPDF() {
         let targetLocCol = document.createElement('div');
         targetLocCol.setAttribute('class', 'col');
         let frame = document.createElement('iframe');
-        frame.setAttribute('height', '750px');
+        frame.setAttribute('height', '500px');
         frame.setAttribute('width', '100%');
         frame.src = dataUrl;
         targetLocCol.appendChild(frame);
@@ -679,7 +676,7 @@ function genPDF() {
         let targetLocCol1 = document.createElement('div');
         targetLocCol1.setAttribute('class', 'col');
         let frames = document.createElement('iframe');
-        frames.setAttribute('height', '750px');
+        frames.setAttribute('height', '500px');
         frames.setAttribute('width', '100%');
         frames.src = dataUrl;
         targetLocCol1.appendChild(frames);

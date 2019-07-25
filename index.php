@@ -130,7 +130,7 @@
                       <output id="installment0" name="installment0" for="years0 interest0"></output>
                   </div>
                   <div class="form-group">
-                      <input type="button" class="btn btn-primary" id="calculate0" onclick="calcInstallments(this.id[9])" value="Calculate">
+                      <input type="button" class="btn btn-primary" id="calculate0" onclick="calcInstallments(this.id[9])" value="คำนวณ (Calculate)">
                   </div>
                   </form>
                 </div>    
@@ -157,7 +157,7 @@
                       <input id="newAddOnPrice" name="newAddOnPrice" type="text" placeholder="ราคา (Price) - THB" class="form-control">
                     </div>
                     <div class="col-2">
-                      <input type="submit" name="add" id="add" class="btn btn-block btn-success" value="เพิ่ม (Add)" />
+                      <input type="submit" name="add" id="add" class="btn btn-block btn-success" value="เพิ่ม (Add) " />
                     </div>
                   </div>
                 </form>
