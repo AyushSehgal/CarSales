@@ -70,7 +70,7 @@
                     
                     <!-- Multiple Radios -->
                     <div class="form-group">
-                      <label for="downPayment">เงินดาวน (Down Payment)</label>   
+                      <label for="downPayment">เงินดาวน (Down Payment) - เลือกเปอร์เซ็นต์หรือมูลค่า (Choose Percentage or Value)</label>   
                       <div class=radio>
                         <label for="downPayment-0">
                           <input type="radio" name="downPayment" id="downPayment-0" value="15" onclick="calcDownVal(); calcFinanceVal()">

@@ -21,10 +21,14 @@ function getCarPriceTotal() {
     campaignBud = parseInt(form.elements["campaignBud"].value);
     var totalPrice = 0;
 
-    if (Number.isNaN(addOn) || Number.isNaN(companyBud) || Number.isNaN(campaignBud)) {
+    if (Number.isNaN(addOn)) {
         addOn = 0; 
+    }
+    if (Number.isNaN(companyBud)) {
         companyBud = 0;
-        campaignBud = 0;   
+    }
+    if (Number.isNaN(campaignBud)) {
+        campaignBud = 0;  
     }
     totalPrice = originalPrice + addOn + companyBud + campaignBud;
     
@@ -418,33 +422,38 @@ function populateAddOnTable(identifier) {
     return tableBody;
     
 }
-function validate(carName, carOriginal, carDownPayment, sales) {
-    if (!carName) {
-        alert('กรุณาใส่ชื่อที่ถูกต้องสำหรับรุ่น (Please enter a valid name for the Model Name)');
-    } 
+function validate(carOriginal, carDownPayment, sales) {
+    var x = true;
     if (Number.isNaN(carOriginal)) {
+        x = false;
         alert('กรุณาใส่ราคาจริงที่ถูกต้อง (Please enter a valid number for the Original Vehicle Price)');
     }
     if (Number.isNaN(carDownPayment)) {
+        x = false;
         alert('กรุณาใส่เงินดาวนเปอร์เซ็นต์ที่ถูกต้อง (Please enter a valid number for the \'other\' down payment)');
     } 
     if (!sales[0]) {
+        x = false;
         alert('กรุณาใส่ชื่อที่ถูกต้องสำหรับผู้จัดการฝ่ายขาย (Please enter a valid name for the Sales Person)');
     }
     if (!sales[1]) {
+        x = false;
         alert('กรุณาใส่เบอร์โทรศัพท์ของผู้จัดการฝ่ายขายที่ถูกต้อง (Please enter a valid Sales Phone Number)');
     }
     if (!sales[2]) {
+        x = false;
         alert('กรุณาใส่ LineID/Emailที่ถูกต้อง (Please enter a valid number LineID/Email)');
     }
+    return false;
 
 }
 var a = 0;
 function genPDF() {
     a++;
-    var carName = getVehicleName().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    var carTotal = getCarPriceTotal().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    var carName = getVehicleName();
+    var carTotal = getCarPriceTotal();
     var carDownPercentage = getDownPayment();
+    console.log("carDownPercentage: " + carDownPercentage);
     var placeholderDownVal = 0;
     if (typeof carDownPercentage === 'string' && carDownPercentage[0] == 'c') {
         carDownPercentage = carDownPercentage.slice(1, carDownPercentage.length);
@@ -455,12 +464,32 @@ function genPDF() {
     var carFinance = calcFinanceVal().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     var carSalesInfo = salesInfo();
 
-    validate(carName, originalPrice, carDownPercentage, carSalesInfo);
+    
+    var valid = validate(originalPrice, carDownPercentage, carSalesInfo);
+
+    if (valid) {
     //Support for commas
+    var carTotalP = carTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     var originalPriceP = originalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    var addOnP = addOn.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    var companyBudP = companyBud.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    var campaignBudP = campaignBud.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    var addOnP;
+    if (addOn == 0) {
+        addOnP = '-';
+    } else {
+        addOnP = addOn.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    var companyBudP;
+    if (companyBud == 0) {
+        companyBudP = '-';
+    } else {
+        companyBudP = companyBud.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    var campaignBudP
+    if (campaignBud == 0) {
+        companyBudP = '-';
+    } else {
+        campaignBudP = campaignBud.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    
 
     
     if (trackSelections.length == 0) {
@@ -481,7 +510,7 @@ function genPDF() {
                 'งบบริษัท (Company Budget): ' + companyBudP + ' THB',
                 'งบแคมเปญ (Campaign Budget): ' + campaignBudP + ' THB',
     
-                'ราคารดสุทธิ (Total Price): ' + carTotal + ' THB',
+                'ราคารดสุทธิ (Total Price): ' + carTotalP + ' THB',
                 ' ',
                 'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + '%',
                 'เงินดาวน (Down Payment Value): ' + carDownValue + ' THB',
@@ -540,7 +569,7 @@ function genPDF() {
     
                 'รถยนต์รุ่น (Vehicle Model Name): ' + carName,
     
-                'ราคารดสุทธิ (Total Price): ' + carTotal + ' THB',
+                'ราคารดสุทธิ (Total Price): ' + carTotalP + ' THB',
                 ' ',
                 'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + '%',
                 'เงินดาวน (Down Payment Value): ' + carDownValue + ' THB',
@@ -599,7 +628,7 @@ function genPDF() {
             'งบบริษัท (Company Budget): ' + companyBudP + ' THB',
             'งบแคมเปญ (Campaign Budget): ' + campaignBudP + ' THB',
     
-            'ราคารดสุทธิ (Total Price): ' + carTotal + ' THB',
+            'ราคารดสุทธิ (Total Price): ' + carTotalP + ' THB',
             ' ',
             'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + '%',
             'เงินดาวน (Down Payment Value): ' + carDownValue + ' THB',
@@ -668,7 +697,7 @@ function genPDF() {
 
             'รถยนต์รุ่น (Vehicle Model Name): ' + carName,
     
-                'ราคารดสุทธิ (Total Price): ' + carTotal + ' THB',
+                'ราคารดสุทธิ (Total Price): ' + carTotalP + ' THB',
                 ' ',
                 'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + ' %',
                 'เงินดาวน (Down Payment Value): ' + carDownValue + ' THB',
@@ -770,7 +799,7 @@ function genPDF() {
         grid.appendChild(targetLocCol1);
     });
 
-    
+}
 }
 
 
