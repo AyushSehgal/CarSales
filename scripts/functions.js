@@ -14,12 +14,16 @@ function getCarPriceTotal() {
     var outputPrice = form.elements["totalPrice"];
     originalPrice = parseInt(form.elements["originalPrice"].value);
     var addOn = parseInt(form.elements["addOn"].value);
+    var companyBud = parseInt(form.elements["companyBud"].value);
+    var campaignBud = parseInt(form.elements["campaignBud"].value);
     var totalPrice = 0;
 
-    if (Number.isNaN(addOn)) {
-        addOn = 0;    
+    if (Number.isNaN(addOn) || Number.isNaN(companyBud) || Number.isNaN(campaignBud)) {
+        addOn = 0; 
+        companyBud = 0;
+        campaignBud = 0;   
     }
-    totalPrice = originalPrice + addOn;
+    totalPrice = originalPrice + addOn + companyBud + campaignBud;
     
     outputPrice.value = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");    
     return totalPrice;

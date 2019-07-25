@@ -46,8 +46,20 @@
                     
                     <!-- Text input-->
                     <div class="form-group">
-                      <label for="addOn">ราคาเพิ่มเติม (Add-On Price)</label>  
+                      <label for="addOn">บวกหัว (Add-On Price)</label>  
                       <input id="addOn" name="addOn" oninput="getCarPriceTotal(); calcDownVal(); calcFinanceVal()" type="text" placeholder="" class="form-control input-md">
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label for="companyBud">งบบริษัท (Company Budget)</label>  
+                      <input id="companyBud" name="companyBud" oninput="getCarPriceTotal(); calcDownVal(); calcFinanceVal()" type="text" placeholder="" class="form-control input-md">
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label for="campaignBud">งบแคมเปญ (Campaign Budget)</label>  
+                      <input id="campaignBud" name="campaignBud" oninput="getCarPriceTotal(); calcDownVal(); calcFinanceVal()" type="text" placeholder="" class="form-control input-md">
                     </div>
                     
                     <!-- Text output-->
