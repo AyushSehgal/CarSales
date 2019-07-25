@@ -438,6 +438,12 @@ function genPDF() {
     var carName = getVehicleName();
     var carTotal = getCarPriceTotal();
     var carDownPercentage = getDownPayment();
+    var placeholderDownVal = 0;
+    if (typeof carDownPercentage === 'string' && carDownPercentage[0] == 'c') {
+        carDownPercentage = carDownPercentage.slice(1, carDownPercentage.length);
+        placeholderDownVal = parseInt(carDownPercentage, 10);
+        carDownPercentage = Math.round((placeholderDownVal / carTotal) * 100);
+    }
     var carDownValue = calcDownVal();
     var carFinance = calcFinanceVal();
     var carSalesInfo = salesInfo();
