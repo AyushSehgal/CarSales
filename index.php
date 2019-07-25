@@ -200,7 +200,12 @@
                         </tr>  
                     </thead>
                     <tbody id="bodySelected">
-
+                      <tr>
+                        <td></td>
+                        <td><label><strong>Total: </strong></label><label id="totalsoutputCost"></label></td>
+                        <td><label><strong>Total: </strong></label><label id="totalsoutputPrice"></label></td>
+                        <td></td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>

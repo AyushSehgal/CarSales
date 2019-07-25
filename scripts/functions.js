@@ -182,6 +182,8 @@ function deleteInterest(divId) {
 var k = 0;
 let trackSelections = new Array();
 let trackSelectionsMenu = new Array(); 
+var totalSelectionsCost = new Array();
+var totalSelectionsPrice = new Array();
 function selection() {
     var menu = document.getElementById("optionsTable");
     var cells = menu.getElementsByTagName('td');
@@ -190,9 +192,15 @@ function selection() {
         cell.onclick = function () {
             var rowId = this.parentNode.rowIndex;
             var rowSelected = menu.getElementsByTagName('tr')[rowId]; 
+            
             if (!trackSelections.includes(rowSelected)) {
                 trackSelections.push(rowSelected);
                 k++;
+                var theCost = rowSelected.getElementsByTagName('td')[1].innerHTML;
+                var thePrice = rowSelected.getElementsByTagName('td')[2].innerHTML;
+                totalSelectionsCost.push(theCost);
+                totalSelectionsPrice.push(thePrice);
+                selectionsTotal();
                 handleSelected(rowSelected, k);
             } else {
                 alert('เพิ่มรายการนี้แล้ว (Already Added this Add-On)');
@@ -227,6 +235,32 @@ function handleSelected(row, k) {
         selectedItems.setAttribute('style', '');
     } 
 }
+var totalerCost = 0;
+var totalerPrice = 0;
+function selectionsTotal() {    
+    var intCost;
+    var intPrice;
+    var outputTotalerCost = document.getElementById('totalsoutputCost');
+    var outputTotalerPrice = document.getElementById('totalsoutputPrice');
+    console.log(outputTotalerCost);
+    console.log(totalSelectionsCost);
+    console.log(totalSelectionsPrice);
+    let length = totalSelectionsCost.length;
+    console.log(length);
+    for (let c = 0; c < length; c++) {
+        intCost = parseInt(totalSelectionsCost[c], 10);
+        totalSelectionsCost.splice(c, 1);
+        intPrice = parseInt(totalSelectionsPrice[c], 10);
+        totalSelectionsPrice.splice(c, 1);
+        totalerCost += intCost;
+        totalerPrice += intPrice;
+    }
+    console.log(totalerCost);
+    console.log(totalerPrice);
+    outputTotalerCost.innerHTML = totalerCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    outputTotalerPrice.innerHTML = totalerPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+}
 
 /** Unchecks Selected Item 
  * Removes selected item from the selected items menu and deletes it from the array so it can be rechecked if needed.
@@ -235,8 +269,17 @@ function handleSelected(row, k) {
  * - When onclick value of newly created form-group for input options is changed (line 195)
 */
 function uncheckItem(id) {
+    var outputTotalerCost = document.getElementById('totalsoutputCost');
+    var outputTotalerPrice = document.getElementById('totalsoutputPrice');
+    
     var item = document.getElementById(id);
     var inputValue = item.childNodes[1];
+    var costValue = item.getElementsByTagName('td')[1].innerHTML;
+    var priceValue = item.getElementsByTagName('td')[2].innerHTML;
+    totalerCost -= costValue;
+    totalerPrice -= priceValue;
+    outputTotalerCost.innerHTML = totalerCost;
+    outputTotalerPrice.innerHTML = totalerPrice;
     var index = trackSelections.indexOf(inputValue);
     trackSelections.splice(index, 1); 
     trackSelectionsMenu.splice(index, 1);

@@ -16,7 +16,7 @@ $(document).ready(function(){
           success:function(data){
             $('#add').attr('disabled', false);
             if(data.item) {
-              var html = '<tr onclick="selection()">';
+              var html = '<tr onclick=selection()">';
               html += '<td>'+data.item+'</td>';
               html += '<td>'+data.cost+'</td>';
               html += '<td>'+data.price+'</td>';
