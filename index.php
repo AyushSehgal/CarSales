@@ -82,12 +82,19 @@
                         <br>
                         <label for="downPayment-3">
                           <input type="radio" name="downPayment" id="downPayment-3" value="other" onclick="calcDownVal(); calcFinanceVal()">
-                          Other:
+                          กำหนดเปอร์เซ็นต์เงินดาวนเอง (Other):
                         </label>
                         <input id="otherRadio" oninput="calcDownVal(); calcFinanceVal()" name="otherRadio" type="text" placeholder="%">
+
+                        <br>
+                        <label for="downPayment-4">
+                          <input type="radio" name="downPayment" id="downPayment-4" value="custom" onclick="calcDownVal(); calcFinanceVal()">
+                          กำหนดเงินดาวนเอง (Enter Custom Down Payment Value):
+                        </label>
+                        <input id="customRadio" oninput="calcDownVal(); calcFinanceVal()" name="customRadio" type="text" placeholder="THB">
                       </div> 
                     </div>
-                  
+
                     <!-- Text output-->
                     <div class="form-group">
                       <label for="downVal"><strong>เงินดาวน (Down Payment Value) - THB: </strong></label>                        
@@ -168,8 +175,8 @@
                   <thead>
                     <tr>
                       <th scope="col">ของแถม (Item)</th>
-                      <th scope="col">มูลค่า (Cost) - THB</th>
-                      <th scope="col">ราคา (Price) - THB</th>
+                      <th scope="col">ราคาศูนย์ (Cost) - THB</th>
+                      <th scope="col">ราคาลูกค้า (Price) - THB</th>
                     </tr>
                   </thead>
                   <tbody id="selectedBody">

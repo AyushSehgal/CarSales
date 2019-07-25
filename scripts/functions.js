@@ -30,7 +30,7 @@ function getCarPriceTotal() {
  * for financial value calculations later.
  * 
  * Referenced In: 
- * - function calcFinVal() to calculate financial value
+ * - function calcDownVal() to calculate DownPayment value
 */
 function getDownPayment() {
     var theForm = document.getElementById("carform");
@@ -45,13 +45,21 @@ function getDownPayment() {
                 downPaymentVal = parseInt(theForm.elements["otherRadio"].value);
                 break;
             }
+            if (downPaymentVal == "custom") {
+                downPaymentVal = parseInt(theForm.elements["customRadio"].value);
+                Number.toString(downPaymentVal);
+                downPaymentVal = 'c' + downPaymentVal;
+                break;
+            }
             break;
         }
 
     }
+    console.log("downPaymentVal: " + downPaymentVal);
+    console.log(typeof downPaymentVal);
     return downPaymentVal;
 }
-/** Calculate Financial Value
+/** Calculate DownPayment Value
  * Uses getCarPriceTotal()'s addition and the radio values
  * using getDownPayment(), converts down payment to a percent decimal
  * and combines the result, limiting the answer to 2 decimal places.
@@ -65,11 +73,20 @@ function calcDownVal() {
     var outputDownVal = theForm1.elements["downVal"];
     var total = getCarPriceTotal();
     var down = getDownPayment();
-    
-    var downVal = total * (down / 100);
 
-    outputDownVal.value = downVal.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return downVal; 
+    if (typeof down === 'string' && down[0] == 'c') {
+        down = down.slice(1, down.length);
+        down = parseInt(down, 10);
+        outputDownVal.value = down.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return down;
+    } else {
+        var downVal = total * (down / 100);
+        outputDownVal.value = downVal.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return downVal; 
+    }
+    
+    
+    
 }
 function calcFinanceVal() {
     var formu = document.getElementById("carform");
