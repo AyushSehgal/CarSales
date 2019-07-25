@@ -42,7 +42,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                       <label for="originalPrice">ราคาจริง (Original Price of Vehicle)</label>  
-                      <input id="originalPrice" onclick="originalCheck(id)" oninput="originalCheck(); getCarPriceTotal(); calcDownVal(); calcFinanceVal()" name="originalPrice" type="text" placeholder="" class="form-control input-md">  
+                      <input id="originalPrice" onclick="originalCheck(id)" oninput="getCarPriceTotal(); calcDownVal(); calcFinanceVal()" name="originalPrice" type="text" placeholder="" class="form-control input-md">  
                       <p id="alertOriginal" class="text-danger"></p>
                     </div>
                     

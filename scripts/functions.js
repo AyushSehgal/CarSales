@@ -66,8 +66,7 @@ function getDownPayment() {
         }
 
     }
-    console.log("downPaymentVal: " + downPaymentVal);
-    console.log(typeof downPaymentVal);
+
     return downPaymentVal;
 }
 /** Calculate DownPayment Value
@@ -270,11 +269,7 @@ function selectionsTotal() {
     var intPrice;
     var outputTotalerCost = document.getElementById('totalsoutputCost');
     var outputTotalerPrice = document.getElementById('totalsoutputPrice');
-    console.log(outputTotalerCost);
-    console.log(totalSelectionsCost);
-    console.log(totalSelectionsPrice);
     let length = totalSelectionsCost.length;
-    console.log(length);
     for (let c = 0; c < length; c++) {
         intCost = parseInt(totalSelectionsCost[c], 10);
         totalSelectionsCost.splice(c, 1);
@@ -283,8 +278,6 @@ function selectionsTotal() {
         totalerCost += intCost;
         totalerPrice += intPrice;
     }
-    console.log(totalerCost);
-    console.log(totalerPrice);
     outputTotalerCost.innerHTML = totalerCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     outputTotalerPrice.innerHTML = totalerPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     
@@ -453,7 +446,6 @@ function genPDF() {
     var carName = getVehicleName();
     var carTotal = getCarPriceTotal();
     var carDownPercentage = getDownPayment();
-    console.log("carDownPercentage: " + carDownPercentage);
     var placeholderDownVal = 0;
     if (typeof carDownPercentage === 'string' && carDownPercentage[0] == 'c') {
         carDownPercentage = carDownPercentage.slice(1, carDownPercentage.length);
@@ -467,7 +459,6 @@ function genPDF() {
     
     var valid = validate(originalPrice, carDownPercentage, carSalesInfo);
 
-    if (valid) {
     //Support for commas
     var carTotalP = carTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     var originalPriceP = originalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -797,7 +788,7 @@ function genPDF() {
         grid.appendChild(targetLocCol1);
     });
 
-}
+
 }
 
 
