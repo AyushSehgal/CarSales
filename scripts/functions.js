@@ -437,7 +437,7 @@ function validate(carOriginal, carDownPayment, sales) {
         x = false;
         alert('กรุณาใส่ LineID/Emailที่ถูกต้อง (Please enter a valid number LineID/Email)');
     }
-    return false;
+    return x;
 
 }
 var a = 0;
@@ -458,7 +458,8 @@ function genPDF() {
 
     
     var valid = validate(originalPrice, carDownPercentage, carSalesInfo);
-
+    console.log(valid);
+    if (valid) {
     //Support for commas
     var carTotalP = carTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     var originalPriceP = originalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -787,7 +788,7 @@ function genPDF() {
         targetLocCol1.appendChild(frames);
         grid.appendChild(targetLocCol1);
     });
-
+}
 
 }
 
