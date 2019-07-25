@@ -9,13 +9,16 @@
  * - addOn input field in index.html
 */
 var originalPrice;
+var addOn;
+var companyBud;
+var campaignBud;
 function getCarPriceTotal() {
     var form = document.getElementById("carform"); 
     var outputPrice = form.elements["totalPrice"];
     originalPrice = parseInt(form.elements["originalPrice"].value);
-    var addOn = parseInt(form.elements["addOn"].value);
-    var companyBud = parseInt(form.elements["companyBud"].value);
-    var campaignBud = parseInt(form.elements["campaignBud"].value);
+    addOn = parseInt(form.elements["addOn"].value);
+    companyBud = parseInt(form.elements["companyBud"].value);
+    campaignBud = parseInt(form.elements["campaignBud"].value);
     var totalPrice = 0;
 
     if (Number.isNaN(addOn) || Number.isNaN(companyBud) || Number.isNaN(campaignBud)) {
@@ -468,13 +471,17 @@ function genPDF() {
                 },
                 ' ',
                 'รถยนต์รุ่น (Vehicle Model Name): ' + carName,
+                'ราคาจริง (Original Price of Vehicle): ' + originalPrice + ' THB',
+                'บวกหัว (Add-On Price): ' + addOn + ' THB', 
+                'งบบริษัท (Company Budget): ' + companyBud + ' THB',
+                'งบแคมเปญ (Campaign Budget): ' + campaignBud + ' THB',
     
-                'ราคารดสุทธิ (Total Price): ' + carTotal + 'THB',
+                'ราคารดสุทธิ (Total Price): ' + carTotal + ' THB',
                 ' ',
                 'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + '%',
-                'เงินดาวน (Down Payment Value): ' + carDownValue + 'THB',
+                'เงินดาวน (Down Payment Value): ' + carDownValue + ' THB',
                 ' ',
-                'ยอดจัดไฟแนนซ์ (Financial Value of Vehicle): ' + carFinance + 'THB',
+                'ยอดจัดไฟแนนซ์ (Financial Value of Vehicle): ' + carFinance + ' THB',
                 ' ',
                 'ค่างวด (Installment Values)',
                 {
@@ -528,12 +535,12 @@ function genPDF() {
     
                 'รถยนต์รุ่น (Vehicle Model Name): ' + carName,
     
-                'ราคารดสุทธิ (Total Price): ' + carTotal + 'THB',
+                'ราคารดสุทธิ (Total Price): ' + carTotal + ' THB',
                 ' ',
                 'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + '%',
-                'เงินดาวน (Down Payment Value): ' + carDownValue + 'THB',
+                'เงินดาวน (Down Payment Value): ' + carDownValue + ' THB',
                 ' ',
-                'ยอดจัดไฟแนนซ์ (Financial Value of Vehicle): ' + carFinance + 'THB',
+                'ยอดจัดไฟแนนซ์ (Financial Value of Vehicle): ' + carFinance + ' THB',
                 ' ',
                 'ค่างวด (Installment Values)',
                 {
@@ -582,13 +589,18 @@ function genPDF() {
             },
             ' ',
             'รถยนต์รุ่น (Vehicle Model Name): ' + carName,
+            'ราคาจริง (Original Price of Vehicle): ' + originalPrice + ' THB',
+            'บวกหัว (Add-On Price): ' + addOn + ' THB', 
+            'งบบริษัท (Company Budget): ' + companyBud + ' THB',
+            'งบแคมเปญ (Campaign Budget): ' + campaignBud + ' THB',
     
-            'ราคารดสุทธิ (Total Price): ' + carTotal + 'THB',
+            'ราคารดสุทธิ (Total Price): ' + carTotal + ' THB',
             ' ',
             'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + '%',
-            'เงินดาวน (Down Payment Value): ' + carDownValue + 'THB',
+            'เงินดาวน (Down Payment Value): ' + carDownValue + ' THB',
              ' ',
-            'ยอดจัดไฟแนนซ์ (Financial Value of Vehicle): ' + carFinance + 'THB',                ' ',
+            'ยอดจัดไฟแนนซ์ (Financial Value of Vehicle): ' + carFinance + ' THB',                
+            ' ',
             'ค่างวด (Installment Values)',
             {
                 style: 'tableForm',
@@ -651,12 +663,12 @@ function genPDF() {
 
             'รถยนต์รุ่น (Vehicle Model Name): ' + carName,
     
-                'ราคารดสุทธิ (Total Price): ' + carTotal + 'THB',
+                'ราคารดสุทธิ (Total Price): ' + carTotal + ' THB',
                 ' ',
-                'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + '%',
-                'เงินดาวน (Down Payment Value): ' + carDownValue + 'THB',
+                'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + ' %',
+                'เงินดาวน (Down Payment Value): ' + carDownValue + ' THB',
                 ' ',
-                'ยอดจัดไฟแนนซ์ (Financial Value of Vehicle): ' + carFinance + 'THB',
+                'ยอดจัดไฟแนนซ์ (Financial Value of Vehicle): ' + carFinance + ' THB',
                 ' ',
                 'ค่างวด (Installment Values)',
             {
