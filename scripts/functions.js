@@ -490,8 +490,6 @@ function genPDF() {
         campaignBudP = campaignBud.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
     
-
-    
     if (trackSelections.length == 0) {
         var docDefinitionSales = {
             info: {
