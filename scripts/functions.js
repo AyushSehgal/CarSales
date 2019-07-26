@@ -367,7 +367,7 @@ function populateInterestTable() {
     var cardsInterest;
     var cardsInstallment;
     var body = [];
-    body.push([{text: 'Months', style: 'tableHeader'}, {text: 'Installment Value (THB)', style: 'tableHeader'}, {text: 'Interest (%)', style: 'tableHeader'}]);
+    body.push([{text: 'เดือน (Months)', style: 'tableHeader'}, {text: 'ค่างวด (Installment Value) - THB', style: 'tableHeader'}, {text: 'ดอกเบี้ย (Interest) - %', style: 'tableHeader'}]);
     for (let cardNo = 0; cardNo <= j; cardNo++) {
         cardss = document.getElementById('card' + cardNo);
         cardsYears = cardss.childNodes[1].childNodes[1].childNodes[1].childNodes[3].value;
@@ -452,7 +452,8 @@ function genPDF() {
         placeholderDownVal = parseInt(carDownPercentage, 10);
         carDownPercentage = Math.round((placeholderDownVal / carTotal) * 100);
     } 
-    var carDownValue = calcDownVal().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    var carDownValue = calcDownVal().toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    console.log(carDownValue);
     var carFinance = calcFinanceVal().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     var carSalesInfo = salesInfo();
 
@@ -760,17 +761,13 @@ function genPDF() {
         let title = document.createElement('legend');
         title.innerHTML = 'Quotation PDFs';
         let targetLocRow = document.createElement('div');
-        targetLocRow.setAttribute('class', 'row');
+        targetLocRow.setAttribute('class', 'container'); 
         targetLocRow.setAttribute('id', 'grid');
-        let targetLocCol = document.createElement('div');
-        targetLocCol.setAttribute('class', 'col');
         let frame = document.createElement('iframe');
         frame.setAttribute('height', '500px');
         frame.setAttribute('width', '100%');
         frame.src = dataUrl;
-        targetLocCol.appendChild(frame);
-        targetLocRow.appendChild(targetLocCol);
-        targetLocCol.appendChild(frame);
+        targetLocRow.appendChild(frame); 
         targetLoc.appendChild(title);
         targetLoc.appendChild(targetLocRow);
     });
@@ -778,14 +775,11 @@ function genPDF() {
     var documentCustomer = pdfMake.createPdf(docDefinitionCustomer);
     documentCustomer.getDataUrl((dataUrl) => {
         let grid = document.getElementById('grid');
-        let targetLocCol1 = document.createElement('div');
-        targetLocCol1.setAttribute('class', 'col');
         let frames = document.createElement('iframe');
         frames.setAttribute('height', '500px');
         frames.setAttribute('width', '100%');
         frames.src = dataUrl;
-        targetLocCol1.appendChild(frames);
-        grid.appendChild(targetLocCol1);
+        grid.appendChild(frames);
     });
 }
 
