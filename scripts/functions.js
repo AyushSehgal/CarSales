@@ -9,6 +9,7 @@
  * - addOn input field in index.html
 */
 var originalPrice;
+var originalPriceDiscount = 0;
 var addOn;
 var companyBud;
 var campaignBud;
@@ -16,13 +17,14 @@ function getCarPriceTotal() {
     var form = document.getElementById("carform"); 
     var outputPrice = form.elements["totalPrice"];
     originalPrice = parseInt(form.elements["originalPrice"].value);
+    originalPriceDiscount = parseInt(form.elements["originalPriceDiscount"].value);
     addOn = parseInt(form.elements["addOn"].value);
     var totalPrice = 0;
 
     if (Number.isNaN(addOn) || typeof addOn === 'undefined') {
         addOn = 0; 
     }
-    totalPrice = originalPrice + addOn;
+    totalPrice = originalPrice - originalPriceDiscount + addOn;
     
     outputPrice.value = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");    
     return totalPrice;
@@ -87,22 +89,27 @@ function getDownPayment() {
  * - downPayment radio buttons in index.html
  * - calcInstallments() 
  */
+var downDiscount = 0;
 function calcDownVal() {
     var theForm1 = document.getElementById("carform");
     var outputDownVal = theForm1.elements["downVal"];
     var total = getCarPriceTotal();
     var down = getDownPayment();
+    downDiscount = parseInt(theForm1.elements["downDiscount"].value);
 
-    if (typeof down === 'string' && down[0] == 'c') {
-        down = down.slice(1, down.length);
-        down = parseInt(down, 10);
-        outputDownVal.value = down.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        return down;
-    } else {
-        var downVal = total * (down / 100);
-        outputDownVal.value = downVal.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        return downVal; 
-    }
+        if (typeof down === 'string' && down[0] == 'c') {
+            down = down.slice(1, down.length);
+            down = parseInt(down, 10);
+            down = down - downDiscount;
+            outputDownVal.value = down.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return down;
+        } else {
+            var downVal = total * (down / 100);
+            downVal = downVal - downDiscount;
+            outputDownVal.value = downVal.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return downVal; 
+        }
+    
     
     
     
@@ -518,6 +525,7 @@ function genPDF() {
                 ' ',
                 'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + '%',
                 'เงินดาวน (Down Payment Value): ' + carDownValue + ' THB',
+                'ส่วนลดเงินดาวน (Discount on Vehicle Price): ' + downDiscount + ' THB',
                 ' ',
                 'ยอดจัดไฟแนนซ์ (Financial Value of Vehicle): ' + carFinance + ' THB',
                 ' ',
@@ -573,11 +581,13 @@ function genPDF() {
     
                 'รถยนต์รุ่น (Vehicle Model Name): ' + carName,
                 'ราคาจริง (Original Price of Vehicle): ' + originalPriceP + ' THB',
+                'ส่วนลดราคาจริง (Discount on Vehicle Price): ' + originalPriceDiscount + 'THB',
                 'บวกหัว (Add-On Price): ' + addOnP + ' THB', 
                 'ราคารดสุทธิ (Total Price): ' + carTotalP + ' THB',
                 ' ',
                 'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + '%',
                 'เงินดาวน (Down Payment Value): ' + carDownValue + ' THB',
+                'ส่วนลดเงินดาวน (Discount on Vehicle Price): ' + downDiscount + ' THB',
                 ' ',
                 'ยอดจัดไฟแนนซ์ (Financial Value of Vehicle): ' + carFinance + ' THB',
                 ' ',
@@ -629,6 +639,7 @@ function genPDF() {
             ' ',
             'รถยนต์รุ่น (Vehicle Model Name): ' + carName,
             'ราคาจริง (Original Price of Vehicle): ' + originalPriceP + ' THB',
+            'ส่วนลดราคาจริง (Discount on Vehicle Price): ' + originalPriceDiscount + 'THB',
             'บวกหัว (Add-On Price): ' + addOnP + ' THB', 
             'งบบริษัท (Company Budget): ' + companyBudP + ' THB',
             'งบแคมเปญ (Campaign Budget): ' + campaignBudP + ' THB',
@@ -640,6 +651,7 @@ function genPDF() {
             ' ',
             'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + '%',
             'เงินดาวน (Down Payment Value): ' + carDownValue + ' THB',
+            'ส่วนลดเงินดาวน (Discount on Vehicle Price): ' + downDiscount + ' THB',
              ' ',
             'ยอดจัดไฟแนนซ์ (Financial Value of Vehicle): ' + carFinance + ' THB',                
             ' ',
@@ -705,12 +717,14 @@ function genPDF() {
 
             'รถยนต์รุ่น (Vehicle Model Name): ' + carName,
             'ราคาจริง (Original Price of Vehicle): ' + originalPriceP + ' THB',
+            'ส่วนลดราคาจริง (Discount on Vehicle Price): ' + originalPriceDiscount + 'THB',
             'บวกหัว (Add-On Price): ' + addOnP + ' THB', 
     
                 'ราคารดสุทธิ (Total Price): ' + carTotalP + ' THB',
                 ' ',
                 'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + ' %',
                 'เงินดาวน (Down Payment Value): ' + carDownValue + ' THB',
+                'ส่วนลดเงินดาวน (Discount on Vehicle Price): ' + downDiscount + ' THB',
                 ' ',
                 'ยอดจัดไฟแนนซ์ (Financial Value of Vehicle): ' + carFinance + ' THB',
                 ' ',

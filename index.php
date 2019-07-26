@@ -45,6 +45,11 @@
                       <input id="originalPrice" onclick="validateField(id)" oninput="getCarPriceTotal(); calcDownVal(); calcFinanceVal()" name="originalPrice" type="text" placeholder="" class="form-control input-md">  
                       <p id="alertOriginal" class="text-danger"></p>
                     </div>
+
+                    <div class="form-group">
+                      <label for="originalPriceDiscount">ส่วนลดราคาจริง (Discount on Vehicle Price)</label>  
+                      <input id="originalPriceDiscount" name="originalPriceDiscount" oninput="getCarPriceTotal(); calcDownVal(); calcFinanceVal()" type="text" placeholder="" class="form-control input-md">
+                    </div>
                     
                     <!-- Text input-->
                     <div class="form-group">
@@ -113,6 +118,11 @@
                         </label>
                         <input id="customRadio4" onclick="autoCheck(id)" oninput="calcDownVal(); calcFinanceVal()" name="customRadio" type="text" placeholder="THB">
                       </div> 
+                    </div>
+
+                    <div class="form-group">
+                      <label for="downDiscount">ส่วนลดเงินดาวน (Discount on Vehicle Price)</label>  
+                      <input id="downDiscount" name="downDiscount" oninput="calcDownVal(); calcFinanceVal()" type="text" placeholder="" class="form-control input-md" value="0">
                     </div>
 
                     <!-- Text output-->
