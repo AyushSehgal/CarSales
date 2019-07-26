@@ -4,7 +4,10 @@ Created the app for [RMA Group](https://rmagroup.net) (Mazda and Ford Digital Te
 
 
 ## Tools/Libraries/Frameworks Used: 
-HTML, CSS, Bootstrap, Javascript, PHP, JQuery, AJAX, pdfmake, mySQL, phpMyAdmin
+HTML5, CSS, Bootstrap, Javascript, PHP, JQuery, AJAX, pdfmake, mySQL, phpMyAdmin
 
 ## User Interface / Design
 Coming soon...
+
+## Copyright
+© Copyright - RMA Group
