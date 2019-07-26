@@ -42,7 +42,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                       <label for="originalPrice">ราคาจริง (Original Price of Vehicle)</label>  
-                      <input id="originalPrice" onclick="originalCheck(id)" oninput="getCarPriceTotal(); calcDownVal(); calcFinanceVal()" name="originalPrice" type="text" placeholder="" class="form-control input-md">  
+                      <input id="originalPrice" onclick="validateField(id)" oninput="getCarPriceTotal(); calcDownVal(); calcFinanceVal()" name="originalPrice" type="text" placeholder="" class="form-control input-md">  
                       <p id="alertOriginal" class="text-danger"></p>
                     </div>
                     
@@ -140,12 +140,12 @@
                   <form class="form-horizontal" id="interestCards0">
                   <div class="form-group">
                     <label for="years0">จำนวนปีที่ผ่อน (Installment Years)</label>  
-                    <input id="years0" onclick="originalCheck(id)"name="years0" type="text" class="form-control">
+                    <input id="years0" onclick="validateField(id)"name="years0" type="text" class="form-control">
                     <p id="alertInstallYears" class="text-danger"></p>
                   </div>
                   <div class="form-group">
                       <label for="interest0">ดอกเบี้ย (Interest) (%)</label>  
-                      <input id="interest0" onclick="originalCheck(id)" name="interest0" type="text" class="form-control">
+                      <input id="interest0" onclick="validateField(id)" name="interest0" type="text" class="form-control">
                       <p id="alertInstallInterest" class="text-danger"></p>
                   </div>
                   <div class="form-group">
@@ -247,17 +247,17 @@
             <legend>ข้อมูลการขาย (Sales Information)</legend>
             <div class="form-group">
              <label for="salesPerson">ผู้จัดการฝ่ายขาย (Sales Person):</label>
-             <input id="salesPerson" type="text" onclick="originalCheck(id)" input="salesInfo()" class="form-control">
+             <input id="salesPerson" type="text" onclick="validateField(id)" input="salesInfo()" class="form-control">
              <p id="salesPersonAlert" class="text-danger"></p>
             </div>
             <div class="form-group">
              <label for="salesPhone">เบอร์โทรศัพท์ (Sales Phone Number):</label>
-             <input id="salesPhone" type="text" onclick="originalCheck(id)" oninput="salesInfo()" class="form-control">
+             <input id="salesPhone" type="text" onclick="validateField(id)" oninput="salesInfo()" class="form-control">
              <p id="salesPhoneAlert" class="text-danger"></p>
             </div>
             <div class="form-group">
              <label for="salesLine">LineID or Email:</label>
-             <input id="salesLine" type="text" onclick="originalCheck(id)" oninput="salesInfo()" class="form-control">
+             <input id="salesLine" type="text" onclick="validateField(id)" oninput="salesInfo()" class="form-control">
              <p id="salesLineAlert" class="text-danger"></p>
             </div>
    

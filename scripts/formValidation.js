@@ -1,12 +1,12 @@
-function originalCheck(id) {
+function validateField(id) {
     var originalPriceElement = document.getElementById("" + id).value;
     if (isNaN(originalPriceElement) || originalPriceElement < 1) {
-        document.getElementById("alertOriginal").innerHTML = "* ข้อมูลที่จำเป็น (Required Field)";
-        document.getElementById("alertInstallYears").innerHTML = "* ข้อมูลที่จำเป็น (Required Field)";
-        document.getElementById("alertInstallInterest").innerHTML = "* ข้อมูลที่จำเป็น (Required Field)";
-        document.getElementById("salesPersonAlert").innerHTML = "* ข้อมูลที่จำเป็น (Required Field)";
-        document.getElementById("salesPhoneAlert").innerHTML = "* ข้อมูลที่จำเป็น (Required Field)";
-        document.getElementById("salesLineAlert").innerHTML = "* ข้อมูลที่จำเป็น (Required Field)";
+        document.getElementById("alertOriginal").innerHTML = "* จำเป็น (Required Field)";
+        document.getElementById("alertInstallYears").innerHTML = "* จำเป็น (Required Field)";
+        document.getElementById("alertInstallInterest").innerHTML = "* จำเป็น (Required Field)";
+        document.getElementById("salesPersonAlert").innerHTML = "* จำเป็น (Required Field)";
+        document.getElementById("salesPhoneAlert").innerHTML = "* จำเป็น (Required Field)";
+        document.getElementById("salesLineAlert").innerHTML = "* จำเป็น (Required Field)";
         
     } else {
         document.getElementById("alertOriginal").innerHTML = "";
