@@ -464,19 +464,19 @@ function genPDF() {
     var carTotalP = carTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     var originalPriceP = originalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     var addOnP;
-    if (addOn == 0) {
+    if (addOn == 0 ||isNaN(addOn) || typeof addOn === 'undefined') {
         addOnP = '-';
     } else {
         addOnP = addOn.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
     var companyBudP;
-    if (companyBud == 0) {
+    if (companyBud == 0 || isNaN(companyBud) || typeof companyBud === 'undefined') {
         companyBudP = '-';
     } else {
         companyBudP = companyBud.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
     var campaignBudP
-    if (campaignBud == 0) {
+    if (campaignBud == 0 ||isNaN(campaignBud) || typeof campaignBud === 'undefined') {
         companyBudP = '-';
     } else {
         campaignBudP = campaignBud.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
