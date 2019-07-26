@@ -24,6 +24,10 @@ function getCarPriceTotal() {
     if (Number.isNaN(addOn) || typeof addOn === 'undefined') {
         addOn = 0; 
     }
+    if (Number.isNaN(originalPriceDiscount) || typeof originalPriceDiscount === 'undefined') {
+        originalPriceDiscount = 0; 
+    }
+    
     totalPrice = originalPrice - originalPriceDiscount + addOn;
     
     outputPrice.value = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");    
@@ -96,6 +100,10 @@ function calcDownVal() {
     var total = getCarPriceTotal();
     var down = getDownPayment();
     downDiscount = parseInt(theForm1.elements["downDiscount"].value);
+
+    if (isNaN(downDiscount) || typeof downDiscount === 'undefined') {
+        downDiscount = 0;
+    }
 
         if (typeof down === 'string' && down[0] == 'c') {
             down = down.slice(1, down.length);

@@ -122,7 +122,7 @@
 
                     <div class="form-group">
                       <label for="downDiscount">ส่วนลดเงินดาวน (Discount on Vehicle Price)</label>  
-                      <input id="downDiscount" name="downDiscount" oninput="calcDownVal(); calcFinanceVal()" type="text" placeholder="" class="form-control input-md" value="0">
+                      <input id="downDiscount" name="downDiscount" oninput="calcDownVal(); calcFinanceVal()" type="text" placeholder="" class="form-control input-md">
                     </div>
 
                     <!-- Text output-->
