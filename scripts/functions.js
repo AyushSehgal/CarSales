@@ -21,13 +21,13 @@ function getCarPriceTotal() {
     campaignBud = parseInt(form.elements["campaignBud"].value);
     var totalPrice = 0;
 
-    if (Number.isNaN(addOn)) {
+    if (Number.isNaN(addOn) || typeof addOn === 'undefined') {
         addOn = 0; 
     }
-    if (Number.isNaN(companyBud)) {
+    if (Number.isNaN(companyBud) || typeof companyBud === 'undefined') {
         companyBud = 0;
     }
-    if (Number.isNaN(campaignBud)) {
+    if (Number.isNaN(campaignBud) || typeof campaignBud === 'undefined') {
         campaignBud = 0;  
     }
     totalPrice = originalPrice + addOn + companyBud + campaignBud;
@@ -458,7 +458,6 @@ function genPDF() {
 
     
     var valid = validate(originalPrice, carDownPercentage, carSalesInfo);
-    console.log(valid);
     if (valid) {
     //Support for commas
     var carTotalP = carTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -477,7 +476,7 @@ function genPDF() {
     }
     var campaignBudP
     if (campaignBud == 0 ||isNaN(campaignBud) || typeof campaignBud === 'undefined') {
-        companyBudP = '-';
+        campaignBudP = '-';
     } else {
         campaignBudP = campaignBud.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
