@@ -108,12 +108,10 @@ function calcDownVal() {
         if (typeof down === 'string' && down[0] == 'c') {
             down = down.slice(1, down.length);
             down = parseInt(down, 10);
-            down = down - downDiscount;
             outputDownVal.value = down.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             return down;
         } else {
             var downVal = total * (down / 100);
-            downVal = downVal - downDiscount;
             outputDownVal.value = downVal.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             return downVal; 
         }
@@ -143,7 +141,7 @@ function calcInstallments(digit) {
     var theForm2 = document.getElementById("interestCards" + digit);
     var outputInstallment = theForm2.elements["installment" + digit];
     years = parseInt(theForm2.elements["years" + digit].value);
-    interest = parseInt(theForm2.elements["interest" + digit].value);
+    interest = parseFloat(theForm2.elements["interest" + digit].value);
     var financialValue = calcFinanceVal();
 
     installmentValue = ((financialValue * (interest / 100) * years) + financialValue) / (years * 12);
