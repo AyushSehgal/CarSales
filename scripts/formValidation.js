@@ -18,3 +18,7 @@ function validateField(id) {
     } 
 }
 
+function autoCheck(num) {
+    var radioField = document.getElementById('downPayment-' + num[num.length - 1]);
+    radioField.checked = true;
+}

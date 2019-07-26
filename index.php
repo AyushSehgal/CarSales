@@ -98,14 +98,14 @@
                           <input type="radio" name="downPayment" id="downPayment-3" value="other" onclick="calcDownVal(); calcFinanceVal()">
                           กำหนดเปอร์เซ็นต์เงินดาวนเอง (Other):
                         </label>
-                        <input id="otherRadio" oninput="calcDownVal(); calcFinanceVal()" name="otherRadio" type="text" placeholder="%">
+                        <input id="otherRadio3" onclick="autoCheck(id)" oninput="calcDownVal(); calcFinanceVal()" name="otherRadio" type="text" placeholder="%">
 
                         <br>
                         <label for="downPayment-4">
                           <input type="radio" name="downPayment" id="downPayment-4" value="custom" onclick="calcDownVal(); calcFinanceVal()">
                           กำหนดเงินดาวนเอง (Enter Custom Down Payment Value):
                         </label>
-                        <input id="customRadio" oninput="calcDownVal(); calcFinanceVal()" name="customRadio" type="text" placeholder="THB">
+                        <input id="customRadio4" onclick="autoCheck(id)" oninput="calcDownVal(); calcFinanceVal()" name="customRadio" type="text" placeholder="THB">
                       </div> 
                     </div>
 
