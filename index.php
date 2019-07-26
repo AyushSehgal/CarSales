@@ -55,19 +55,25 @@
                     <!-- Text input-->
                     <div class="form-group">
                       <label for="companyBud">งบบริษัท (Company Budget)</label>  
-                      <input id="companyBud" name="companyBud" oninput="getCarPriceTotal(); calcDownVal(); calcFinanceVal()" type="text" placeholder="" class="form-control input-md">
+                      <input id="companyBud" name="companyBud" oninput="getBudgetTotal()" type="text" placeholder="" class="form-control input-md">
                     </div>
 
                     <!-- Text input-->
                     <div class="form-group">
                       <label for="campaignBud">งบแคมเปญ (Campaign Budget)</label>  
-                      <input id="campaignBud" name="campaignBud" oninput="getCarPriceTotal(); calcDownVal(); calcFinanceVal()" type="text" placeholder="" class="form-control input-md">
+                      <input id="campaignBud" name="campaignBud" oninput="getBudgetTotal()" type="text" placeholder="" class="form-control input-md">
                     </div>
                     
                     <!-- Text output-->
                     <div class="form-group">
                       <label for="totalPrice"><strong>ราคารดสุทธิ (Total Price) - THB:</strong></label>  
                       <output id="totalPrice" name="totalPrice" for="addOn originalPrice"></output>
+                    </div>
+
+                     <!-- Text output-->
+                     <div class="form-group">
+                      <label for="totalBudgetPrice"><strong>ราคารดสุทธิงบ (Total Price) - THB:</strong></label>  
+                      <output id="totalBudgetPrice" name="totalBudgetPrice" for="campaignBud companyBud"></output>
                     </div>
                     
                     <!-- Multiple Radios -->

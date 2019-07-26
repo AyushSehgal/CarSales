@@ -17,23 +17,32 @@ function getCarPriceTotal() {
     var outputPrice = form.elements["totalPrice"];
     originalPrice = parseInt(form.elements["originalPrice"].value);
     addOn = parseInt(form.elements["addOn"].value);
-    companyBud = parseInt(form.elements["companyBud"].value);
-    campaignBud = parseInt(form.elements["campaignBud"].value);
     var totalPrice = 0;
 
     if (Number.isNaN(addOn) || typeof addOn === 'undefined') {
         addOn = 0; 
     }
+    totalPrice = originalPrice + addOn;
+    
+    outputPrice.value = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");    
+    return totalPrice;
+}
+
+function getBudgetTotal() {
+    var form2 = document.getElementById("carform"); 
+    var outputBudgetPrice = form2.elements["totalBudgetPrice"];
+    companyBud = parseInt(form2.elements["companyBud"].value);
+    campaignBud = parseInt(form2.elements["campaignBud"].value);
     if (Number.isNaN(companyBud) || typeof companyBud === 'undefined') {
         companyBud = 0;
     }
     if (Number.isNaN(campaignBud) || typeof campaignBud === 'undefined') {
         campaignBud = 0;  
     }
-    totalPrice = originalPrice + addOn + companyBud + campaignBud;
-    
-    outputPrice.value = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");    
-    return totalPrice;
+    var budgetTotal = companyBud + campaignBud;
+
+    outputBudgetPrice.value = budgetTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");    
+    return budgetTotal;
 }
 /** Down Payment Radios 
  * Gathers numerical data from radio menu values 
@@ -457,6 +466,8 @@ function genPDF() {
     var carFinance = calcFinanceVal().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     var carSalesInfo = salesInfo();
 
+    var remainingValue = getBudgetTotal() - totalerCost;
+
     
     var valid = validate(originalPrice, carDownPercentage, carSalesInfo);
     if (valid) {
@@ -499,6 +510,9 @@ function genPDF() {
                 'บวกหัว (Add-On Price): ' + addOnP + ' THB', 
                 'งบบริษัท (Company Budget): ' + companyBudP + ' THB',
                 'งบแคมเปญ (Campaign Budget): ' + campaignBudP + ' THB',
+                'ของแถมราคาศูนย์ (Add-Ons Company Value): ' + totalerCost + ' THB',
+                'ของแถมราคาลูกค้า (Add-Ons Customer Value): ' + totalerPrice + ' THB',
+                'งบ - ของแถม (Remaining Value): ' + remainingValue + ' THB',
     
                 'ราคารดสุทธิ (Total Price): ' + carTotalP + ' THB',
                 ' ',
@@ -558,7 +572,8 @@ function genPDF() {
                 'LineID/Email: ' + carSalesInfo[2],
     
                 'รถยนต์รุ่น (Vehicle Model Name): ' + carName,
-    
+                'ราคาจริง (Original Price of Vehicle): ' + originalPriceP + ' THB',
+                'บวกหัว (Add-On Price): ' + addOnP + ' THB', 
                 'ราคารดสุทธิ (Total Price): ' + carTotalP + ' THB',
                 ' ',
                 'เงินดาวนเปอร์เซ็นต์ (Down Payment Percentage): ' + carDownPercentage + '%',
@@ -617,6 +632,9 @@ function genPDF() {
             'บวกหัว (Add-On Price): ' + addOnP + ' THB', 
             'งบบริษัท (Company Budget): ' + companyBudP + ' THB',
             'งบแคมเปญ (Campaign Budget): ' + campaignBudP + ' THB',
+            'ของแถมราคาศูนย์ (Add-Ons Company Value): ' + totalerCost + ' THB',
+            'ของแถมราคาลูกค้า (Add-Ons Customer Value): ' + totalerPrice + ' THB',
+            'งบ - ของแถม (Remaining Value): ' + remainingValue + ' THB',
     
             'ราคารดสุทธิ (Total Price): ' + carTotalP + ' THB',
             ' ',
@@ -686,6 +704,8 @@ function genPDF() {
             'LineID/Email: ' + carSalesInfo[2],
 
             'รถยนต์รุ่น (Vehicle Model Name): ' + carName,
+            'ราคาจริง (Original Price of Vehicle): ' + originalPriceP + ' THB',
+            'บวกหัว (Add-On Price): ' + addOnP + ' THB', 
     
                 'ราคารดสุทธิ (Total Price): ' + carTotalP + ' THB',
                 ' ',
