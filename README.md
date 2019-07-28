@@ -7,7 +7,11 @@ Created the app for [RMA Group](https://rmagroup.net) (Mazda and Ford Digital Te
 HTML5, CSS, Bootstrap, Javascript, PHP, JQuery, AJAX, pdfmake, mySQL, phpMyAdmin
 
 ## User Interface / Design
-Coming soon...
+[Original Design - Pre Development (made in Adobe XD)](assets/CarFinancingWebFinal.pdf "Preliminary Design")
+![Form UI](assets/CarFinancesForm1.png "Car Finances Form 1")
+![Form UI](assets/CarFinancesForm2.png "Car Finances Form 2")
+![Form UI](assets/CarFinancesForm3.png "Car Finances Form 3")
+
 
 ## Copyright
 © Copyright - RMA Group
