@@ -104,18 +104,18 @@ function calcDownVal() {
     if (isNaN(downDiscount) || typeof downDiscount === 'undefined') {
         downDiscount = 0;
     }
-
-        if (typeof down === 'string' && down[0] == 'c') {
-            down = down.slice(1, down.length);
-            down = parseInt(down, 10);
-            outputDownVal.value = down.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            return down;
-        } else {
-            var downVal = total * (down / 100);
-            outputDownVal.value = downVal.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            return downVal; 
-        }
-    
+    if (typeof down === 'string' && down[0] == 'c') {
+        down = down.slice(1, down.length);
+        down = parseInt(down, 10);
+        down = down - downDiscount;
+        outputDownVal.value = down.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return down;
+    } else {
+        var downVal = total * (down / 100);
+        downVal = downVal - downDiscount;
+        outputDownVal.value = downVal.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return downVal; 
+    }
     
     
     
